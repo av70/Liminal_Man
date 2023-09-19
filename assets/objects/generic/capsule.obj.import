@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cs6pnqc6fiuqq"
+path="res://.godot/imported/capsule.obj-619aa595396a6903767926001d07b435.mesh"
+
+[deps]
+
+files=["res://.godot/imported/capsule.obj-619aa595396a6903767926001d07b435.mesh"]
+
+source_file="res://assets/objects/generic/capsule.obj"
+dest_files=["res://.godot/imported/capsule.obj-619aa595396a6903767926001d07b435.mesh", "res://.godot/imported/capsule.obj-619aa595396a6903767926001d07b435.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

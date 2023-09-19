@@ -1,0 +1,7 @@
+[gd_resource type="TextMesh" load_steps=2 format=3 uid="uid://ddc1ne21ry8u4"]
+
+[ext_resource type="Material" uid="uid://bs2yr0uqopa2k" path="res://assets/textures/materials/missing.tres" id="1_10kmq"]
+
+[resource]
+material = ExtResource("1_10kmq")
+text = "missing"

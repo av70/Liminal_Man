@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci4c4b21gi4nu"]
+
+[ext_resource type="Script" path="res://Player/player1.gd" id="1_jwc5u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtitk"]
+margin = 0.1
+radius = 0.3
+height = 1.6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n2qu6"]
+margin = 0.1
+radius = 0.3
+height = 0.7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m4lus"]
+radius = 0.3
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+wall_min_slide_angle = 0.785398
+floor_constant_speed = true
+script = ExtResource("1_jwc5u")
+
+[node name="standing_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+shape = SubResource("CapsuleShape3D_vtitk")
+
+[node name="tip_toe_collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_n2qu6")
+disabled = true
+
+[node name="NeckPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+
+[node name="Camera" type="Camera3D" parent="NeckPivot"]
+cull_mask = 524287
+
+[node name="InteractRay" type="RayCast3D" parent="NeckPivot/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+visible = false
+target_position = Vector3(0, 0.1, -2)
+collision_mask = 4
+
+[node name="FloorRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.4, 0.000128299)
+target_position = Vector3(0, -0.4, 0)
+collision_mask = 3
+
+[node name="HeadRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+target_position = Vector3(0, 1.2, 0)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+layers = 262144
+mesh = SubResource("CapsuleMesh_m4lus")

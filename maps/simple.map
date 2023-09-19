@@ -1,0 +1,25 @@
+// Game: Godot
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures"
+// brush 0
+{
+( -64 -64 -16 ) ( -64 -63 -16 ) ( -64 -64 -15 ) office_floor00 0 0 0 1 1
+( -64 -64 -16 ) ( -64 -64 -15 ) ( -63 -64 -16 ) office_floor00 0 0 0 1 1
+( -64 -64 -16 ) ( -63 -64 -16 ) ( -64 -63 -16 ) office_floor00 0 0 0 1 1
+( 64 64 16 ) ( 64 65 16 ) ( 65 64 16 ) office_floor00 0 0 0 1 1
+( 64 64 16 ) ( 65 64 16 ) ( 64 64 17 ) office_floor00 0 0 0 1 1
+( 64 64 16 ) ( 64 64 17 ) ( 64 65 16 ) office_floor00 0 0 0 1 1
+}
+// brush 1
+{
+( -16 0 16 ) ( -16 1 16 ) ( -16 0 17 ) office_floor00 0 0 0 1 1
+( -16 0 16 ) ( -16 0 17 ) ( -15 0 16 ) office_floor00 0 0 0 1 1
+( -16 0 16 ) ( -15 0 16 ) ( -16 1 16 ) office_floor00 0 0 0 1 1
+( 0 16 48 ) ( 0 17 48 ) ( 1 16 48 ) office_floor00 0 0 0 1 1
+( 0 16 32 ) ( 1 16 32 ) ( 0 16 33 ) office_floor00 0 0 0 1 1
+( 0 16 32 ) ( 0 16 33 ) ( 0 17 32 ) office_floor00 0 0 0 1 1
+}
+}
