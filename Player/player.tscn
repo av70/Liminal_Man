@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci4c4b21gi4nu"]
+[gd_scene load_steps=7 format=3 uid="uid://ci4c4b21gi4nu"]
 
 [ext_resource type="Script" path="res://Player/player1.gd" id="1_jwc5u"]
+[ext_resource type="PackedScene" uid="uid://cmrjd352jta3n" path="res://entities/audio/AudioQueue.tscn" id="2_tmpq5"]
+[ext_resource type="AudioStream" uid="uid://boaphpiuii6wg" path="res://audio/interact/door_close01.wav" id="3_2a6lr"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vtitk"]
-margin = 0.1
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk7ra"]
 radius = 0.3
-height = 1.6
+height = 1.5
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n2qu6"]
-margin = 0.1
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aw4en"]
 radius = 0.3
-height = 0.7
+height = 1.1
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m4lus"]
 radius = 0.3
@@ -23,18 +23,25 @@ floor_constant_speed = true
 script = ExtResource("1_jwc5u")
 
 [node name="standing_collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-shape = SubResource("CapsuleShape3D_vtitk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.25, 2.08165e-12)
+shape = SubResource("CapsuleShape3D_bk7ra")
 
 [node name="tip_toe_collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-shape = SubResource("CapsuleShape3D_n2qu6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.05, 2.08165e-12)
+shape = SubResource("CapsuleShape3D_aw4en")
 disabled = true
 
 [node name="NeckPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
 
+[node name="AudioQueue" parent="NeckPivot" instance=ExtResource("2_tmpq5")]
+count = 2
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="NeckPivot/AudioQueue"]
+stream = ExtResource("3_2a6lr")
+
 [node name="Camera" type="Camera3D" parent="NeckPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 3)
 cull_mask = 524287
 
 [node name="InteractRay" type="RayCast3D" parent="NeckPivot/Camera"]
@@ -44,12 +51,13 @@ target_position = Vector3(0, 0.1, -2)
 collision_mask = 4
 
 [node name="FloorRaycast" type="RayCast3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.4, 0.000128299)
-target_position = Vector3(0, -0.4, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, 0.5, 2.08165e-12)
+target_position = Vector3(2.08165e-12, -0.5, 2.08165e-12)
 collision_mask = 3
 
 [node name="HeadRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+visible = false
 target_position = Vector3(0, 1.2, 0)
 collision_mask = 3
 collide_with_areas = true
