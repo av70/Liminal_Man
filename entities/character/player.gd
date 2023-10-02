@@ -29,10 +29,9 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	if kinematic_controller_fsm.current_state is KinematicGroundState:
-	
+		print(neck_pivot.rotation)
 		if  !Input.is_action_pressed("strafe"): # bad no good
-			neck_pivot.rotation.z = lerp(neck_pivot.rotation.z,0.0,5*delta)
-	
+			neck_pivot.rotation.z = lerp(neck_pivot.rotation.z,0.0,20*delta)
 		if Input.is_action_pressed('sneak'):
 			current_speed = sneak_speed
 			neck_pivot.position.y = lerp(neck_pivot.position.y,1.0,delta*3)
@@ -50,5 +49,5 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x*mouse_sense))
 		neck_pivot.rotate_x(deg_to_rad(-event.relative.y*mouse_sense))
-#		neck_pivot.rotation.x = clamp(neck_pivot.rotation.x,(deg_to_rad(-80)),(deg_to_rad(80)))
-
+		neck_pivot.rotation.y = 0
+		neck_pivot.rotation.x = clamp(neck_pivot.rotation.x,(deg_to_rad(-85)),(deg_to_rad(85)))

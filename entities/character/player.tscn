@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://entities/character/player.gd" id="1_b8tke"]
 [ext_resource type="Script" path="res://entities/character/player_audio.gd" id="2_0wpio"]
 [ext_resource type="PackedScene" uid="uid://cmrjd352jta3n" path="res://entities/audio/audio_queue.tscn" id="3_odvb5"]
+[ext_resource type="AudioStream" uid="uid://bejfw10wy3dgy" path="res://audio/player_audio/foot/concrete/concrete08.wav" id="4_80fd5"]
 [ext_resource type="AudioStream" uid="uid://c5l7nql7q2vep" path="res://audio/player_audio/foot/concrete/concrete04.wav" id="4_hhscb"]
-[ext_resource type="AudioStream" uid="uid://ce6n8fdt6k7yg" path="res://audio/player_audio/132106__sironboy__woman-scream.wav" id="5_lb0m5"]
 [ext_resource type="Script" path="res://entities/audio/audio_random.gd" id="6_7yn43"]
 [ext_resource type="AudioStream" uid="uid://dposlfb3ullvi" path="res://audio/player_audio/foot/concrete/concrete00.wav" id="7_exnn4"]
 [ext_resource type="AudioStream" uid="uid://c8rpa32xhm5my" path="res://audio/player_audio/foot/concrete/concrete01.wav" id="8_rgg4p"]
@@ -31,6 +31,7 @@ collision_layer = 0
 collision_mask = 3
 wall_min_slide_angle = 0.785398
 floor_constant_speed = true
+floor_max_angle = 1.22173
 script = ExtResource("1_b8tke")
 
 [node name="stand_collision" type="CollisionShape3D" parent="."]
@@ -48,6 +49,7 @@ transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-
 [node name="Camera" type="Camera3D" parent="NeckPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
 cull_mask = 524287
+size = 30.0
 
 [node name="InteractRay" type="RayCast3D" parent="NeckPivot/Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -68,7 +70,7 @@ stream = ExtResource("4_hhscb")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NeckPivot/PlayerAudio/JumpAudio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08165e-12, 0)
-stream = ExtResource("5_lb0m5")
+stream = ExtResource("4_80fd5")
 
 [node name="FootstepAudioRandom" type="Node3D" parent="NeckPivot/PlayerAudio"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0, 2.08165e-12)
