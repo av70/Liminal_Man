@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://v8w46n2328bg"
+path="res://.godot/imported/urinaletalet.obj-00c6f55978caa828c0f53f69493c72ff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/urinaletalet.obj-00c6f55978caa828c0f53f69493c72ff.mesh"]
+
+source_file="res://assets/objects/New Folder/urinaletalet.obj"
+dest_files=["res://.godot/imported/urinaletalet.obj-00c6f55978caa828c0f53f69493c72ff.mesh", "res://.godot/imported/urinaletalet.obj-00c6f55978caa828c0f53f69493c72ff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

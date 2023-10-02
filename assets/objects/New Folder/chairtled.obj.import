@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2qgudchy7eeo"
+path="res://.godot/imported/chairtled.obj-5786478bd6763df9259e24872601bed7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/chairtled.obj-5786478bd6763df9259e24872601bed7.mesh"]
+
+source_file="res://assets/objects/New Folder/chairtled.obj"
+dest_files=["res://.godot/imported/chairtled.obj-5786478bd6763df9259e24872601bed7.mesh", "res://.godot/imported/chairtled.obj-5786478bd6763df9259e24872601bed7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
