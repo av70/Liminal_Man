@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d3r6wx2dvhobr"]
+
+[ext_resource type="FontFile" uid="uid://ch3blycsctooe" path="res://assets/font/TASAOrbiterDisplay-Bold.otf" id="1_i4olk"]
+
+[resource]
+font = ExtResource("1_i4olk")
+font_size = 25

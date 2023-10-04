@@ -16,19 +16,15 @@ func _ready():
 				audio_queue_array.push_back(i)
 			else:
 				push_error('requires children to be audio_queue')
-	print(audio_queue_array)
 	play_random_audio()
 
 func play_random_audio():
 	var queue = audio_queue_array.pick_random()
 	if queue != last_queue:
-		print(queue,last_queue)
 		queue.play_audio()
 		last_queue = queue
 	else:
 		play_random_audio()
-	
-	print(queue)
 	
 func play_defined_audio(queue: AudioQueue):
 	queue.play_audio()
