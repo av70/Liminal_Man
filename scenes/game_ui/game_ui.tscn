@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1m14syujnnog"]
+[gd_scene load_steps=5 format=3 uid="uid://c1m14syujnnog"]
 
 [ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="1_3ynyt"]
 [ext_resource type="LabelSettings" uid="uid://d3r6wx2dvhobr" path="res://assets/ui/theme/bold.tres" id="2_hmam6"]
-[ext_resource type="Script" path="res://entities/game_ui.gd" id="2_tqtty"]
 [ext_resource type="Texture2D" uid="uid://bs7rk3qpdgd2d" path="res://assets/ui/cursor/Cursor1.png" id="3_npqpj"]
-[ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="4_sc1lq"]
+[ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="4_jos85"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -17,7 +16,6 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3ynyt")
-script = ExtResource("2_tqtty")
 
 [node name="Bottom" type="Control" parent="."]
 layout_mode = 1
@@ -30,7 +28,6 @@ offset_top = -1.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(1.4, 1.4)
 
 [node name="State2" type="Control" parent="Bottom"]
 layout_mode = 1
@@ -103,7 +100,7 @@ text = "EN 00.0"
 label_settings = ExtResource("2_hmam6")
 vertical_alignment = 1
 
-[node name="State3" type="Control" parent="Bottom"]
+[node name="Hover" type="Control" parent="Bottom"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -111,18 +108,33 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 1.0
-offset_top = -1.0
+offset_top = -65.0
 offset_right = 1.0
-offset_bottom = -1.0
+offset_bottom = -65.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom/Hover"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -180.0
+offset_right = 200.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
 
 [node name="TopRight" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 0
 offset_left = 2.0
 offset_right = 2.0
-scale = Vector2(1.4, 1.4)
+scale = Vector2(0.7, 0.7)
 
 [node name="Label2" type="Label" parent="TopRight"]
 layout_mode = 0
@@ -176,28 +188,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Cursor" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(4, 4)
-
-[node name="Cursor1" type="Control" parent="Cursor"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Cursor/Cursor1"]
 modulate = Color(1, 1, 1, 0.784314)
 layout_mode = 1
 anchors_preset = 8
@@ -205,16 +195,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1.5
-offset_top = -2.5
-offset_right = 3.5
-offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_npqpj")
-expand_mode = 1
+scale = Vector2(0.7, 0.7)
 
 [node name="Cursor2" type="Control" parent="Cursor"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -226,19 +212,112 @@ offset_bottom = 3.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Cursor/Cursor2"]
-modulate = Color(1, 1, 1, 0.784314)
+[node name="Cursor" type="TextureRect" parent="Cursor/Cursor2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1.5
-offset_top = -6.5
-offset_right = 3.5
-offset_bottom = -1.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_sc1lq")
+texture = ExtResource("4_jos85")
 expand_mode = 1
+
+[node name="Cursor1" type="Control" parent="Cursor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="Cursor/Cursor1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_npqpj")
+expand_mode = 1
+
+[node name="Label" type="Control" parent="Cursor"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="Cursor/Label"]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 230.0
+offset_bottom = 40.0
+theme = ExtResource("1_3ynyt")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CHAIR"
+label_settings = ExtResource("2_hmam6")
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Cursor/Label"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 44.8572
+offset_right = 230.0
+offset_bottom = 120.857
+alignment = 2
+
+[node name="Label2" type="Label" parent="Cursor/Label/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_3ynyt")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "feffewf"
+label_settings = ExtResource("2_hmam6")
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Cursor/Label/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_3ynyt")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "fefwfewf"
+label_settings = ExtResource("2_hmam6")
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Cursor/Label/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_3ynyt")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "feffewf"
+label_settings = ExtResource("2_hmam6")
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="Cursor/Label/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_3ynyt")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "fefwfewf"
+label_settings = ExtResource("2_hmam6")
+vertical_alignment = 1

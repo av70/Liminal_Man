@@ -34,3 +34,9 @@ func _physics_process(delta):
 	
 	if direction.length() < 0.1:
 		state_complete.emit(controller_idle_state)
+	
+	if !Input.is_action_pressed('sneak'):
+		if Input.is_action_pressed('run'):
+			player.current_speed = player.run_speed
+		else:
+			player.current_speed = player.walk_speed

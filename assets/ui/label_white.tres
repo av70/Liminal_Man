@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://8w4a836qn0ma"]
+
+[ext_resource type="FontFile" uid="uid://picvm2g68o2h" path="res://assets/font/ModernDOS9x14.ttf" id="1_ga5ni"]
+
+[resource]
+font = ExtResource("1_ga5ni")
+font_size = 32

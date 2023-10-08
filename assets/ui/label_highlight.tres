@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bixeuiv6rqbli"]
+
+[ext_resource type="FontFile" uid="uid://dwglg1pkrlood" path="res://assets/font/ModernDOS9x16.ttf" id="1_l1l6d"]
+
+[resource]
+font = ExtResource("1_l1l6d")
+font_size = 32
+font_color = Color(0.886275, 0.431373, 0.133333, 1)

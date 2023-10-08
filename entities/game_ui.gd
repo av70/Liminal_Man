@@ -10,16 +10,16 @@ func _ready():
 func _process(delta):
 	pass
 
-func on_node_hovered():
-	pass
-
-func on_node_unhovered():
-	pass
-
-
-func _on_player_node_hovered(node):
-	print('nodeef')
-
-
-func _on_player_node_unhovered(node):
-	print('efwfwefewf')
+#func on_node_hovered():
+#	pass
+#
+#func on_node_unhovered():
+#	pass
+#
+#
+#func _on_player_node_hovered(node):
+#	print(node)
+#
+#
+#func _on_player_node_unhovered(node):
+#	print(node)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvx6l4f1v38vg"]
+
+[ext_resource type="Script" path="res://entities/interactable/test_interactable.gd" id="1_c6d3x"]
+[ext_resource type="ArrayMesh" uid="uid://b2qgudchy7eeo" path="res://assets/objects/New Folder/chairtled.obj" id="2_vadba"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ofwas"]
+points = PackedVector3Array(-0.895281, 0.0461805, 0.222803, -0.602784, 0.0880324, -0.737467, -0.519289, 2.71842, -0.695746, -0.561124, 1.34071, 0.598807, 0.607984, 2.67657, -0.695746, 0.502744, 0.10185, -0.744393, 0.790671, 1.92025, 0.286526, 0.0651775, 0.0880324, 0.932919, -0.796878, 1.96713, 0.2509, -0.853445, 1.88321, -0.445077, 0.858645, 1.88321, -0.445077, -0.536498, 2.62003, -0.782769, 0.858645, 0.0461805, 0.348138, 0.566324, 1.34071, 0.598807, 0.506754, 2.63259, -0.791278, -0.895281, 0.0880324, 0.348138, 0.273828, 2.71842, -0.612132, 0.900481, 0.0880324, 0.222803, -0.0599774, 0.255178, 0.932919, 0.546372, 0.0934702, -0.709387, 0.802193, 1.96721, 0.250928, -0.0599774, 0.0461805, 0.891026, 0.576485, 2.56955, -0.775449, -0.602784, 2.67657, -0.695746, 0.900481, 0.255178, 0.306417, -0.498424, 0.099597, -0.745802, -0.268628, 2.71842, -0.612132, -0.573419, 2.57396, -0.77854, -0.78505, 1.91997, 0.286403, 0.524489, 2.71842, -0.695746, -0.895281, 0.171474, 0.348138, -0.0599774, 0.0880324, 0.932919)
+
+[node name="Interactable" type="StaticBody3D"]
+collision_layer = 8
+script = ExtResource("1_c6d3x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("2_vadba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ofwas")

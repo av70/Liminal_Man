@@ -24,3 +24,4 @@ func _physics_process(delta):
 	else:
 		player.velocity.z = 0
 		player.velocity.x = 0
+#		player.move_and_slide()

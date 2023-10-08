@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://ci4c4b21gi4nu"]
+[gd_scene load_steps=24 format=3 uid="uid://ci4c4b21gi4nu"]
 
-[ext_resource type="Script" path="res://entities/character/player/player.gd" id="1_22u71"]
+[ext_resource type="Script" path="res://entities/character/player/player2.gd" id="1_507au"]
+[ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="2_mvdjy"]
 [ext_resource type="Script" path="res://entities/character/player/player_audio.gd" id="2_td0o2"]
 [ext_resource type="PackedScene" uid="uid://cmrjd352jta3n" path="res://entities/audio/audio_queue.tscn" id="3_lfitr"]
 [ext_resource type="AudioStream" uid="uid://c5l7nql7q2vep" path="res://audio/player_audio/foot/concrete/concrete04.wav" id="4_kpluj"]
@@ -17,6 +18,9 @@
 [ext_resource type="Script" path="res://entities/character/kinematic/kinematic_air_state.gd" id="15_dc1pl"]
 [ext_resource type="Script" path="res://entities/character/controller/controller_move_state.gd" id="16_rpl5m"]
 [ext_resource type="Script" path="res://entities/character/controller/controller_idle_state.gd" id="17_yueyo"]
+[ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="19_2s47u"]
+[ext_resource type="LabelSettings" uid="uid://d3r6wx2dvhobr" path="res://assets/ui/theme/bold.tres" id="20_r3qk2"]
+[ext_resource type="Texture2D" uid="uid://bs7rk3qpdgd2d" path="res://assets/ui/cursor/Cursor1.png" id="22_8ah0a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk7ra"]
 radius = 0.3
@@ -27,7 +31,7 @@ radius = 0.3
 height = 1.1
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_22u71")
+script = ExtResource("1_507au")
 
 [node name="stand_collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.15, 2.08165e-12)
@@ -39,7 +43,7 @@ shape = SubResource("CapsuleShape3D_aw4en")
 disabled = true
 
 [node name="NeckPivot" type="Node3D" parent="."]
-transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, 1.5, 2.08165e-12)
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, 1.5, 3)
 
 [node name="Camera" type="Camera3D" parent="NeckPivot"]
 transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 0, 2.08165e-12)
@@ -49,19 +53,33 @@ size = 30.0
 
 [node name="InteractRay" type="RayCast3D" parent="NeckPivot/Camera"]
 transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 0, 2.08165e-12)
-target_position = Vector3(2.08165e-12, 2.08165e-12, -2)
+target_position = Vector3(2.08165e-12, 2.08165e-12, -3)
 collision_mask = 8
 
 [node name="Hand" type="Marker3D" parent="NeckPivot/Camera"]
-transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 0, -1)
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -2)
 
-[node name="Joint" type="Generic6DOFJoint3D" parent="NeckPivot/Camera"]
-node_a = NodePath("../StaticBody3D")
+[node name="StaticBody3D" type="StaticBody3D" parent="NeckPivot/Camera"]
+
+[node name="Cursor" type="Node3D" parent="NeckPivot/Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -1)
+visible = false
+
+[node name="Cursor" type="Sprite3D" parent="NeckPivot/Camera/Cursor"]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+modulate = Color(1, 1, 1, 0.784314)
+pixel_size = 0.0015
+billboard = 1
+no_depth_test = true
+fixed_size = true
+texture_filter = 0
+texture = ExtResource("2_mvdjy")
+
+[node name="Joint" type="JoltGeneric6DOFJoint3D" parent="NeckPivot/Camera"]
 linear_limit_x/enabled = false
 linear_limit_y/enabled = false
 linear_limit_z/enabled = false
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NeckPivot/Camera"]
+node_a = NodePath("../StaticBody3D")
 
 [node name="PlayerAudio" type="Node3D" parent="NeckPivot"]
 script = ExtResource("2_td0o2")
@@ -135,7 +153,6 @@ stream = ExtResource("12_pps6v")
 [node name="FloorRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, 0.6, 2.08165e-12)
 target_position = Vector3(2.08165e-12, -1, 2.08165e-12)
-collision_mask = 4
 
 [node name="CeillingRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
@@ -162,3 +179,172 @@ script = ExtResource("16_rpl5m")
 
 [node name="ControllerIdleState" type="Node" parent="InputControllerFSM"]
 script = ExtResource("17_yueyo")
+
+[node name="PlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_top = -1200.0
+offset_right = 960.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="State2" type="Control" parent="PlayerUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="PlayerUI/State2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -40.0
+offset_right = 94.0
+grow_vertical = 0
+theme = ExtResource("19_2s47u")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "HY 000"
+label_settings = ExtResource("20_r3qk2")
+vertical_alignment = 1
+
+[node name="Cursor" type="Control" parent="PlayerUI"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+
+[node name="Cursor2" type="Control" parent="PlayerUI/Cursor"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="PlayerUI/Cursor/Cursor2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_mvdjy")
+expand_mode = 1
+
+[node name="Cursor1" type="Control" parent="PlayerUI/Cursor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="PlayerUI/Cursor/Cursor1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_8ah0a")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="PlayerUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 240.0
+offset_top = -20.0
+offset_right = 240.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hover" type="Control" parent="PlayerUI"]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.969167
+anchor_right = 0.5
+anchor_bottom = 0.969167
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="PlayerUI/Hover"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CHAIR"
+label_settings = ExtResource("20_r3qk2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Hover"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -168.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2

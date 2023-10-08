@@ -1,12 +1,17 @@
 extends HumanEntity
-class_name Player
+class_name Playerg
 
 var mouse_sense: float = 0.1
 var mouse_lock: bool = false
 
-var picked_node: RigidBody3D
-var hovered_node: RigidBody3D
+var picked_node: Pickable
+var hovered_node: PhysicsBody3D
+#var hov_action_keys: int
+var action_index: int = 0
+
 var rotation_power: float = 0.4
+var move_power: float = 7.0
+
 
 @onready var neck_pivot = $NeckPivot
 @onready var kinematic_controller_fsm = $KinematicControllerFSM
@@ -17,32 +22,90 @@ var rotation_power: float = 0.4
 @onready var hand = $NeckPivot/Camera/Hand
 @onready var joint = $NeckPivot/Camera/Joint
 @onready var static_body_3d = $NeckPivot/Camera/StaticBody3D
+@onready var cursor = $NeckPivot/Camera/Cursor
 
+@onready var ui_hover = $PlayerUI/Hover
+@onready var ui_hover_label = $PlayerUI/Hover/Label
+@onready var ui_hover_v_box_container = $PlayerUI/Hover/VBoxContainer
 
-signal node_hovered(node)
-signal node_unhovered(node)
+var highlight = preload("res://assets/ui/label_highlight.tres")
+var white = preload("res://assets/ui/label_white.tres")
 
 func _ready():
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-func on_pick_node_hovered():
+func on_node_hovered():
+	ui_hover.visible = true
+	cursor.visible = true
 	hovered_node = interact_ray.get_collider()
-	node_hovered.emit(hovered_node)
+	ui_hover_label.text = hovered_node.title
+	for i in hovered_node.actions.keys():
+		var duplicate = ui_hover_label.duplicate()
+		ui_hover_v_box_container.add_child(duplicate)
+		duplicate.text = ('%s | %s' % [hovered_node.actions[i]['Title'],hovered_node.actions[i]['Key']])
 
-func on_pick_node_picked():
-	if !picked_node and interact_ray.get_collider():
+func on_node_unhovered():
+	ui_hover.visible = false
+	if !picked_node: cursor.visible = false
+	hovered_node = null
+	action_index = 0
+	for child in ui_hover_v_box_container.get_children():
+		child.queue_free()
+
+func on_node_picked():
+	if interact_ray.get_collider() is Pickable:
 		picked_node = interact_ray.get_collider()
 		joint.set_node_b(interact_ray.get_collider().get_path())
-	else:
-		picked_node = null
-		joint.set_node_b(joint.get_path())
+
+func on_node_unpicked():
+#	on_node_unhovered()
+	cursor.visible = false
+	picked_node = null
+	joint.set_node_b(joint.get_path())
+
+func on_input(index):
+	hovered_node.call(hovered_node.actions[index]['Func'])
+	if hovered_node.actions[index]['Name'] == 'grab':
+		if !picked_node: on_node_picked()
+		else: on_node_unpicked()
+
+func check_input():
+
+	if hovered_node:
+		if Input.is_action_just_pressed('change_action_index_up')and action_index != hovered_node.actions.keys().max():
+			action_index = action_index+1
+		elif Input.is_action_just_pressed('change_action_index_down')and action_index != 0:
+			action_index = action_index-1
+		for i in hovered_node.actions.keys():
+			if i == action_index: ui_hover_v_box_container.get_child(i).set_label_settings(highlight)
+			else: ui_hover_v_box_container.get_child(i).set_label_settings(white)
+		if hovered_node is Interactable or Pickable:
+
+		#	sbortcut input 
+			for i in hovered_node.actions.keys(): 
+				if Input.is_action_just_pressed(hovered_node.actions[i]['Name']) and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+					on_input(i)
+
+		#	mouse input
+			if Input.is_action_just_pressed(hovered_node.actions[action_index]['Name']) and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				on_input(action_index)
+			if Input.is_action_just_released('grab'):
+				on_node_unpicked()
+
+
+func on_hover_node():
+	cursor.global_position = hovered_node.global_position
+	check_input()
 
 func on_pick_node():
 	var a = picked_node.global_transform.origin
 	var b = hand.global_transform.origin
-	picked_node.set_linear_velocity((b-a)*6)
+	picked_node.set_linear_velocity((b-a)*move_power)
+	cursor.global_position = hovered_node.global_position # good code moron
 	if Input.is_action_just_pressed('move_hand_away') and hand.position.z >= -3 : hand.position.z -= 0.25
 	elif Input.is_action_just_pressed('move_hand_close') and hand.position.z <= -1 : hand.position.z += 0.25
+	check_input()
 
 func rotate_pick_node(event):
 	if picked_node:
@@ -52,45 +115,42 @@ func rotate_pick_node(event):
 
 
 func _physics_process(delta):
-	
-#	player-related whatevers that don't require InputControllerFSM to be in a specific state,
-#	or rather requires one of many states, which means it's better for it to be here than rewrite it
-#	for each state? they can't be in kinematic ground state or something because that isn't reserved
-#	for the player. so, if you're looking for the other half of the strafing code or something look in
+		
+#	player-related whatevers that don't require InputControllerFSM to be in a specific state, 
+#	can't be in kinematic ground state or something because that isn't reserved for player
+#	if you're looking for the other half of the strafing code or something look in
 #	controller_move_state.gd dumbass [im sorry i shouldn't have said that i know this is messy]
 	
 	move_and_slide()
 	
 	if kinematic_controller_fsm.current_state is KinematicGroundState:
-	# 	i.e player can;t begin picking objects up while in air or in car? to be implemented? no cars?
-		
-		if  !Input.is_action_pressed("strafe"):
+		print(neck_pivot.rotation)
+		if  !Input.is_action_pressed("strafe"): # bad no good
 			neck_pivot.rotation.z = lerp(neck_pivot.rotation.z,0.0,20*delta)
-		
 		if Input.is_action_pressed('sneak'):
 			current_speed = sneak_speed
 			neck_pivot.position.y = lerp(neck_pivot.position.y,1.0,delta*3)
 			sneak_collision.disabled = false
 			stand_collision.disabled = true
-		
 		elif !ceilling_raycast.is_colliding():
 			sneak_collision.disabled = true
 			stand_collision.disabled = false
 			neck_pivot.position.y = lerp(neck_pivot.position.y,1.5,delta*3)
-			
-			if Input.is_action_pressed('run'): current_speed = run_speed
-			else: current_speed = walk_speed
 		
-		if Input.is_action_just_pressed("jump"): jump.emit()
-		
-		if interact_ray.is_colliding():
-			if interact_ray.get_collider() is RigidBody3D:
-				if !hovered_node: on_pick_node_hovered()
-	
+		if Input.is_action_just_pressed("jump"): 
+			jump.emit()
+
+	if interact_ray.is_colliding():
+		if interact_ray.get_collider() is Interactable or interact_ray.get_collider() is Pickable:
+			if !hovered_node: on_node_hovered()
+	elif hovered_node and !picked_node:
+		on_node_unhovered()
+
 	if picked_node: on_pick_node()
+	elif hovered_node: on_hover_node()
 
 func _input(event):
-	if event is InputEventMouseMotion and !mouse_lock:
+	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x*mouse_sense))
 		neck_pivot.rotate_x(deg_to_rad(-event.relative.y*mouse_sense))
 		neck_pivot.rotation.y = 0
@@ -98,11 +158,8 @@ func _input(event):
 	
 	elif Input.is_action_just_pressed('ui_cancel'):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-#
-	if Input.is_action_just_pressed('pick_up'):on_pick_node_picked()
 	
 	if Input.is_action_pressed('rotate_hand_toggle') and picked_node:
 		mouse_lock = true
 		rotate_pick_node(event)
-	
 	if Input.is_action_just_released('rotate_hand_toggle'): mouse_lock = false

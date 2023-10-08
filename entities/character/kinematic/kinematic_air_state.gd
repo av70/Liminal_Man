@@ -19,9 +19,8 @@ func _exit_state() -> void:
 
 func _physics_process(delta):
 	var floor_target: Vector3 = floor_raycast.get_collision_point()
-	
 	if floor_target.y-0.2 < body.position.y or not floor_raycast.is_colliding():
 		body.velocity.y -= gravity*delta
-	
+
 	else:
 		state_complete.emit(kinematic_ground_state)
