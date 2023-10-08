@@ -3,6 +3,7 @@ class_name ControllerMoveState
 
 @onready var player = $"../.."
 @onready var floor_raycast = $"../../FloorRaycast"
+@onready var kinematic_controller_fsm = $"../../KinematicControllerFSM"
 @onready var direction = player.direction
 @onready var jump_velocity = player.jump_velocity
 @onready var controller_idle_state = $"../ControllerIdleState"
@@ -20,6 +21,7 @@ func _exit_state() -> void:
 	set_physics_process(false)
 
 func _physics_process(delta):
+#	if kinematic_controller_fsm.current_state == KinematicAirState or kinematic_controller_fsm.current_state == KinematicGroundState:
 	var input_dir = Input.get_vector("strafe_left", "strafe_right", "move_front", "move_back")
 	var floor_target: Vector3 = floor_raycast.get_collision_point()
 	
@@ -31,7 +33,7 @@ func _physics_process(delta):
 	
 	if  Input.is_action_pressed("strafe"): # bad no good
 		neck_pivot.rotation.z = lerp(neck_pivot.rotation.z,input_dir.x*-0.05,5*delta)
-	
+		
 	if direction.length() < 0.1:
 		state_complete.emit(controller_idle_state)
 	

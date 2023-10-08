@@ -1,8 +1,8 @@
 extends Node
 class_name FiniteStateMachine
+#@onready var kinematic_ragdoll_state = $KinematicRagdollState
 
 @export var current_state : State
-
 func _ready():
 	for child in get_children():
 		if child is State:

@@ -148,9 +148,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 2.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.68481, 2.4495, 23.9116)
 
 [node name="entity_0_geometry" type="MeshInstance3D" parent="TBLoader/Default Layer"]
+layers = 7
 mesh = SubResource("ArrayMesh_uxo58")
 
 [node name="entity_0_geometry_col" type="StaticBody3D" parent="TBLoader/Default Layer"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_8q6px")
