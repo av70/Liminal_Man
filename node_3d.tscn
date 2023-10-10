@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cit60iw7k61od"]
+[gd_scene load_steps=12 format=3 uid="uid://cit60iw7k61od"]
 
 [ext_resource type="Texture2D" uid="uid://0i41hp1h21k6" path="res://textures/office_floor00.png" id="1_vrou2"]
 [ext_resource type="Texture2D" uid="uid://dylissbdfusin" path="res://textures/office_wall00.png" id="2_4ic16"]
-[ext_resource type="PackedScene" uid="uid://ci4c4b21gi4nu" path="res://entities/character/player.tscn" id="3_vnhea"]
+[ext_resource type="PackedScene" uid="uid://ci4c4b21gi4nu" path="res://entities/character/player/player.tscn" id="3_vnhea"]
+[ext_resource type="PackedScene" uid="uid://coxcs3x2yahrr" path="res://entities/interactable/pickable/test_pickable.tscn" id="4_dr3ux"]
+[ext_resource type="PackedScene" uid="uid://b0ow7epsjpffx" path="res://entities/interactable/pickable/collectable/test_collectable.tscn" id="5_rjv10"]
+[ext_resource type="PackedScene" uid="uid://cvx6l4f1v38vg" path="res://entities/interactable/test_interactable.tscn" id="6_22cuk"]
+[ext_resource type="PackedScene" uid="uid://c4b0scyom400l" path="res://entities/interactable/pickable/collectable/consumable/test_consumable.tscn" id="7_36hdp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncljj"]
 albedo_texture = ExtResource("1_vrou2")
@@ -54,3 +58,15 @@ shape = SubResource("ConcavePolygonShape3D_3uina")
 
 [node name="Player" parent="." instance=ExtResource("3_vnhea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.08165e-12, 3)
+
+[node name="Collectable2" parent="." instance=ExtResource("4_dr3ux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 7)
+
+[node name="Collectable" parent="." instance=ExtResource("5_rjv10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 7)
+
+[node name="Interactable" parent="." instance=ExtResource("6_22cuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 7)
+
+[node name="Consumable" parent="." instance=ExtResource("7_36hdp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 7)

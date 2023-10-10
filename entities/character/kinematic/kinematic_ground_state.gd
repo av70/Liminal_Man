@@ -37,7 +37,7 @@ func _physics_process(delta):
 		if floor_target.y-0.2 < body.position.y and body.velocity.z != 0:
 			if last_step_time > 2.5/body.current_speed-0.1:
 				last_step_time = 0
-				player_audio.play_walk_audio(delta,body.current_speed)
+				player_audio.play_walk_audio()
 		last_step_time = last_step_time+delta
 
 	else:

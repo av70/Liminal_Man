@@ -9,5 +9,5 @@ func play_land_audio():
 func play_jump_audio():
 	jump_audio.play_audio()
 
-func play_walk_audio(delta: float,current_speed: float):
+func play_walk_audio():
 		footstep_audio_random.play_random_audio()

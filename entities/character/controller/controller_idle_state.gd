@@ -17,8 +17,7 @@ func _enter_state() -> void:
 func _exit_state() -> void:
 	set_physics_process(false)
 
-func _physics_process(delta):
-	var floor_target: Vector3 = floor_raycast.get_collision_point()
+func _physics_process(_delta):
 	if Input.is_action_pressed('move'):
 		state_complete.emit(controller_move_state)
 	else:

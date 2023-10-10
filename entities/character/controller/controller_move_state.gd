@@ -23,7 +23,6 @@ func _exit_state() -> void:
 func _physics_process(delta):
 #	if kinematic_controller_fsm.current_state == KinematicAirState or kinematic_controller_fsm.current_state == KinematicGroundState:
 	var input_dir = Input.get_vector("strafe_left", "strafe_right", "move_front", "move_back")
-	var floor_target: Vector3 = floor_raycast.get_collision_point()
 	
 	direction = lerp(direction,(player.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*10)
 	

@@ -1,11 +1,10 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://c6tgkl2u3sp61"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c6tgkl2u3sp61"]
 
 [ext_resource type="StyleBox" uid="uid://dmoli6fg4tw2a" path="res://assets/ui/theme/normal.tres" id="1_td6o0"]
 [ext_resource type="StyleBox" uid="uid://b386v20r3t7vc" path="res://assets/ui/theme/press.tres" id="2_eh7sv"]
 [ext_resource type="StyleBox" uid="uid://qeywaw5xgwel" path="res://assets/ui/theme/hover.tres" id="3_1g45b"]
 [ext_resource type="StyleBox" uid="uid://cdaunom8ggq8b" path="res://assets/ui/theme/highlight.tres" id="4_2l2ra"]
 [ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="5_4rn2a"]
-[ext_resource type="StyleBox" uid="uid://cju6bx2vn86jd" path="res://assets/ui/theme/transluscent.tres" id="5_7f5gl"]
 [ext_resource type="FontFile" uid="uid://dicgcrtyed16e" path="res://assets/font/TASAOrbiterDisplay-Medium.otf" id="6_dhlpp"]
 
 [resource]
@@ -21,7 +20,7 @@ HScrollBar/styles/grabber_highlight = ExtResource("4_2l2ra")
 HScrollBar/styles/grabber_pressed = ExtResource("4_2l2ra")
 HSlider/styles/grabber_area = ExtResource("4_2l2ra")
 HSlider/styles/grabber_area_highlight = ExtResource("4_2l2ra")
-Label/styles/normal = ExtResource("5_7f5gl")
+Label/styles/normal = ExtResource("1_td6o0")
 LineEdit/styles/focus = ExtResource("2_eh7sv")
 LineEdit/styles/normal = ExtResource("1_td6o0")
 LineEdit/styles/read_only = ExtResource("1_td6o0")
@@ -49,6 +48,7 @@ Tree/styles/selected_focus = ExtResource("2_eh7sv")
 Tree/styles/title_button_hover = ExtResource("3_1g45b")
 Tree/styles/title_button_normal = ExtResource("1_td6o0")
 Tree/styles/title_button_pressed = ExtResource("2_eh7sv")
+VBoxContainer/constants/separation = 4
 VScrollBar/styles/grabber = ExtResource("2_eh7sv")
 VScrollBar/styles/grabber_highlight = ExtResource("4_2l2ra")
 VScrollBar/styles/grabber_pressed = ExtResource("4_2l2ra")

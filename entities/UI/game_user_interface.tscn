@@ -1,0 +1,509 @@
+[gd_scene load_steps=18 format=3 uid="uid://btd12e4b4mlel"]
+
+[ext_resource type="Script" path="res://entities/UI/game_user_interface.gd" id="1_4i4uu"]
+[ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="1_qxihk"]
+[ext_resource type="LabelSettings" uid="uid://d3r6wx2dvhobr" path="res://assets/ui/theme/bold.tres" id="2_15niw"]
+[ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="3_m8t2v"]
+[ext_resource type="Texture2D" uid="uid://bs7rk3qpdgd2d" path="res://assets/ui/cursor/Cursor1.png" id="4_eal6c"]
+[ext_resource type="StyleBox" uid="uid://dmoli6fg4tw2a" path="res://assets/ui/theme/normal.tres" id="5_obkcy"]
+[ext_resource type="StyleBox" uid="uid://bv7vg8byqv3eh" path="res://assets/ui/theme/purple/purple_pressed.tres" id="6_l815c"]
+[ext_resource type="Script" path="res://entities/UI/inventory/inventory.gd" id="7_5v64r"]
+[ext_resource type="Theme" uid="uid://kvnbduke4dlq" path="res://assets/ui/purple.tres" id="8_uocti"]
+[ext_resource type="LabelSettings" uid="uid://8w4a836qn0ma" path="res://assets/ui/label_white.tres" id="9_tmpfg"]
+[ext_resource type="FontFile" uid="uid://picvm2g68o2h" path="res://assets/font/ModernDOS9x14.ttf" id="10_onqfe"]
+[ext_resource type="PackedScene" uid="uid://bxxexuvx8mfx0" path="res://entities/UI/inventory/slot/container_inventory_slot.tscn" id="11_rmcqr"]
+[ext_resource type="StyleBox" uid="uid://b386v20r3t7vc" path="res://assets/ui/theme/press.tres" id="12_sq02k"]
+[ext_resource type="PackedScene" uid="uid://cxawhq0ny6ux0" path="res://entities/UI/inventory/slot/player_inventory_slot.tscn" id="13_2qp6h"]
+[ext_resource type="StyleBox" uid="uid://dxnsb1y7aj6ls" path="res://assets/ui/theme/green/green_press.tres" id="14_v2lpu"]
+[ext_resource type="Theme" uid="uid://dgy2qkj5s2rb7" path="res://assets/ui/green.tres" id="15_2gqgq"]
+[ext_resource type="PackedScene" uid="uid://c5uu21tahyvl8" path="res://entities/UI/inventory/slot/equip_inventory_slot.tscn" id="16_ltuhk"]
+
+[node name="GameUserInterface" type="CanvasLayer"]
+script = ExtResource("1_4i4uu")
+
+[node name="PlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="State2" type="Control" parent="PlayerUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="PlayerUI/State2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -40.0
+offset_right = 94.0
+grow_vertical = 0
+theme = ExtResource("1_qxihk")
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "HY 000"
+label_settings = ExtResource("2_15niw")
+vertical_alignment = 1
+
+[node name="Cursor" type="Control" parent="PlayerUI"]
+visible = false
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+metadata/_edit_use_anchors_ = true
+
+[node name="Cursor2" type="Control" parent="PlayerUI/Cursor"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 3.5
+offset_bottom = 3.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="PlayerUI/Cursor/Cursor2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_m8t2v")
+expand_mode = 1
+
+[node name="Cursor1" type="Control" parent="PlayerUI/Cursor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cursor" type="TextureRect" parent="PlayerUI/Cursor/Cursor1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_eal6c")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="PlayerUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 240.0
+offset_top = -20.0
+offset_right = 240.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hover" type="Control" parent="PlayerUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="PlayerUI/Hover"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+label_settings = ExtResource("2_15niw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerUI/Hover"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -168.0
+offset_right = 100.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="Inventory" type="Control" parent="PlayerUI"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -300.5
+offset_right = 540.0
+offset_bottom = 299.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PlayerUI/Inventory"]
+layout_mode = 1
+offset_right = 1000.0
+offset_bottom = 600.0
+theme_override_styles/panel = ExtResource("5_obkcy")
+
+[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("6_l815c")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerUI/Inventory/Panel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 1000.0
+offset_bottom = 602.0
+theme = ExtResource("1_qxihk")
+
+[node name="Inventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer"]
+layout_mode = 2
+theme = ExtResource("1_qxihk")
+theme_override_constants/v_separation = 10
+script = ExtResource("7_5v64r")
+
+[node name="ContainerInventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/v_separation = 45
+
+[node name="Dummy" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 904.0
+grow_vertical = 0
+theme = ExtResource("8_uocti")
+theme_override_styles/panel = ExtResource("6_l815c")
+
+[node name="Label" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 170.0
+offset_bottom = 39.0
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = ExtResource("6_l815c")
+text = "CONTAINER"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
+layout_direction = 1
+layout_mode = 2
+anchors_preset = 0
+offset_left = 174.0
+offset_top = 4.0
+offset_right = 209.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="Button" type="Button" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_uocti")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_onqfe")
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="MaxVolume" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 746.0
+offset_top = 4.0
+offset_right = 821.0
+offset_bottom = 39.0
+theme_override_styles/normal = ExtResource("6_l815c")
+text = "000"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="MaxWeight" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 824.0
+offset_top = 4.0
+offset_right = 900.0
+offset_bottom = 39.0
+theme_override_styles/normal = ExtResource("6_l815c")
+text = "000"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="ContainerInventorySlot" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory" instance=ExtResource("11_rmcqr")]
+layout_mode = 2
+
+[node name="PlayerInventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/v_separation = 45
+
+[node name="Dummy" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 904.0
+grow_vertical = 0
+theme = ExtResource("8_uocti")
+theme_override_styles/panel = ExtResource("12_sq02k")
+
+[node name="Label" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 170.0
+offset_bottom = 39.0
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = ExtResource("12_sq02k")
+text = "INVENTORY"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
+visible = false
+layout_direction = 1
+layout_mode = 2
+anchors_preset = 0
+offset_left = 174.0
+offset_top = 4.0
+offset_right = 209.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="Button" type="Button" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_uocti")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_onqfe")
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="MaxVolume" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 746.0
+offset_top = 4.0
+offset_right = 821.0
+offset_bottom = 39.0
+theme_override_styles/normal = ExtResource("12_sq02k")
+text = "000"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="MaxWeight" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 824.0
+offset_top = 4.0
+offset_right = 900.0
+offset_bottom = 39.0
+theme_override_styles/normal = ExtResource("12_sq02k")
+text = "000"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="PlayerInventorySlot" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory" instance=ExtResource("13_2qp6h")]
+layout_mode = 2
+
+[node name="EquipInventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory"]
+layout_mode = 2
+theme_override_constants/v_separation = 45
+
+[node name="Dummy" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory"]
+layout_mode = 2
+
+[node name="Container" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory"]
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 904.0
+grow_vertical = 0
+theme = ExtResource("8_uocti")
+theme_override_styles/panel = ExtResource("14_v2lpu")
+
+[node name="Label" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 170.0
+offset_bottom = 39.0
+theme_override_constants/outline_size = 0
+theme_override_styles/normal = ExtResource("14_v2lpu")
+text = "CONTAINER"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
+layout_direction = 1
+layout_mode = 2
+anchors_preset = 0
+offset_left = 174.0
+offset_top = 4.0
+offset_right = 209.0
+offset_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.6
+
+[node name="Button" type="Button" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("15_2gqgq")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_onqfe")
+theme_override_font_sizes/font_size = 32
+text = "X"
+
+[node name="MaxVolume" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 746.0
+offset_top = 4.0
+offset_right = 821.0
+offset_bottom = 39.0
+theme_override_styles/normal = ExtResource("14_v2lpu")
+text = "000"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="MaxWeight" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
+layout_mode = 2
+offset_left = 824.0
+offset_top = 4.0
+offset_right = 900.0
+offset_bottom = 39.0
+theme_override_styles/normal = ExtResource("14_v2lpu")
+text = "000"
+label_settings = ExtResource("9_tmpfg")
+horizontal_alignment = 1
+
+[node name="EquipInventorySlot" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory" instance=ExtResource("16_ltuhk")]
+layout_mode = 2
