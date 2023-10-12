@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ch3blycsctooe"
-path="res://.godot/imported/TASAOrbiterDisplay-Bold.otf-5e7bc1e6f35d9bd9a37fb20868c30152.fontdata"
+uid="uid://cwj12g7jmdyv1"
+path="res://.godot/imported/LiberationSans-Italic.ttf-237a4857a4361be80768451d34848342.fontdata"
 
 [deps]
 
-source_file="res://assets/font/TASAOrbiterDisplay-Bold.otf"
-dest_files=["res://.godot/imported/TASAOrbiterDisplay-Bold.otf-5e7bc1e6f35d9bd9a37fb20868c30152.fontdata"]
+source_file="res://assets/font/LiberationSans-Italic.ttf"
+dest_files=["res://.godot/imported/LiberationSans-Italic.ttf-237a4857a4361be80768451d34848342.fontdata"]
 
 [params]
 

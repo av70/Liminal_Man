@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxxexuvx8mfx0"]
+[gd_scene load_steps=8 format=3 uid="uid://b0cq5jluqnnye"]
 
 [ext_resource type="Script" path="res://entities/UI/inventory/slot/slot.gd" id="1_klear"]
 [ext_resource type="Theme" uid="uid://kvnbduke4dlq" path="res://assets/ui/purple.tres" id="2_ivvaq"]
 [ext_resource type="StyleBox" uid="uid://br4ihh67njog" path="res://assets/ui/theme/purple/pressed_no_outline.tres" id="3_kl0qk"]
 [ext_resource type="StyleBox" uid="uid://bv7vg8byqv3eh" path="res://assets/ui/theme/purple/purple_pressed.tres" id="4_3h2sp"]
 [ext_resource type="LabelSettings" uid="uid://8w4a836qn0ma" path="res://assets/ui/label_white.tres" id="5_a3c6s"]
-[ext_resource type="FontFile" uid="uid://picvm2g68o2h" path="res://assets/font/ModernDOS9x14.ttf" id="6_4mjab"]
 [ext_resource type="Texture2D" uid="uid://678jgb6nyrx2" path="res://assets/textures/environ/grass.png" id="7_xkekh"]
 [ext_resource type="StyleBox" uid="uid://d21flaa2s0hya" path="res://assets/ui/theme/purple/purple_normal.tres" id="8_jnu8f"]
 
@@ -65,7 +64,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
 theme = ExtResource("2_ivvaq")
-theme_override_fonts/font = ExtResource("6_4mjab")
 theme_override_font_sizes/font_size = 32
 text = ">"
 
@@ -91,7 +89,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
 theme = ExtResource("2_ivvaq")
-theme_override_fonts/font = ExtResource("6_4mjab")
 theme_override_font_sizes/font_size = 32
 text = "<"
 
@@ -121,7 +118,6 @@ theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("6_4mjab")
 theme_override_font_sizes/font_size = 32
 text = "X"
 
@@ -144,7 +140,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ivvaq")
-theme_override_fonts/font = ExtResource("6_4mjab")
 theme_override_font_sizes/font_size = 32
 text = "H"
 
@@ -167,7 +162,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_ivvaq")
-theme_override_fonts/font = ExtResource("6_4mjab")
 theme_override_font_sizes/font_size = 32
 text = "i"
 

@@ -27,7 +27,7 @@ var move_power: float = 7.0
 @onready var static_body_3d = $NeckPivot/Camera/StaticBody3D
 @onready var cursor = $NeckPivot/Camera/Cursor
 
-signal toggle_inventory
+#signal toggle_inventory
 
 signal on_pickable_node_hovered
 signal on_change_action_index_up
@@ -85,21 +85,23 @@ func rotate_pick_node(event):
 #--------------------------------------------------------------------------------------------------
 #Inventory
 
-func show_inventory():
-	mouse_lock = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	toggle_inventory.emit(self)
+#func show_inventory():
+#	mouse_lock = true
+#	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#	toggle_inventory.emit(self)
+#
+#func hide_inventory():
+#	mouse_lock = false
+#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#	toggle_inventory.emit(self)
 
-func hide_inventory():
-	mouse_lock = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	toggle_inventory.emit(self)
+
 
 #--------------------------------------------------------------------------------------------------
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	hide_inventory()
+#	hide_inventory()
 
 func _physics_process(delta):
 	
@@ -155,9 +157,9 @@ func _input(event):
 	
 	if Input.is_action_just_released('rotate_hand_toggle'): mouse_lock = false
 	
-#	inventory
-	if Input.is_action_just_pressed('toggle_inventory'): 
-		toggle_inventory.emit(self)
+##	inventory
+#	if Input.is_action_just_pressed('toggle_inventory'): 
+#		toggle_inventory.emit(self)
 	
 #	hovered object actions
 #	using is_action_pressed prevents funkyness with lower end mice

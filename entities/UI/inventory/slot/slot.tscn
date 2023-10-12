@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bri0r8gohj2xv"]
+
+[ext_resource type="Texture2D" uid="uid://d12qioiyfr51h" path="res://assets/ui/inventory/slot.png" id="1_yp0tb"]
+[ext_resource type="Script" path="res://entities/UI/inventory/slot/slot.gd" id="1_yp4o3"]
+[ext_resource type="StyleBox" uid="uid://ba14r718i0di5" path="res://assets/ui/inventory/green_slot.tres" id="3_3nkjp"]
+
+[node name="Slot" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yp4o3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.668629, 0.668629, 0.668629, 1)
+layout_mode = 2
+texture = ExtResource("1_yp0tb")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_3nkjp")

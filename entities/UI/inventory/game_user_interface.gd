@@ -19,22 +19,22 @@ var equip_inventory_slot = preload("res://entities/UI/inventory/slot/equip_inven
 var highlight = preload("res://assets/ui/label_highlight.tres")
 var white = preload("res://assets/ui/label_white.tres")
 
-
-func show_inventory(player: Player):
-	inventory_panel.visible = true
-	player.mouse_lock = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE	)
-	if player.player_inventory: inventory_ui.populate_inventory(player_inventory_ui,player.player_inventory,player_inventory_slot)
-	if player.container_inventory: inventory_ui.populate_inventory(container_inventory_ui,player.container_inventory,container_inventory_slot)
-	if player.equip_inventory: inventory_ui.populate_inventory(equip_inventory_ui,player.equip_inventory,equip_inventory_slot)
-
-func hide_inventory(player: Player):
-	inventory_panel.visible = false
-	player.mouse_lock = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	inventory_ui.clear_inventory(player_inventory_ui)
-	inventory_ui.clear_inventory(container_inventory_ui)
-	inventory_ui.clear_inventory(equip_inventory_ui)
+#
+#func show_inventory(player: Player):
+#	inventory_panel.visible = true
+#	player.mouse_lock = true
+#	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE	)
+#	if player.player_inventory: inventory_ui.populate_inventory(player_inventory_ui,player.player_inventory,player_inventory_slot)
+#	if player.container_inventory: inventory_ui.populate_inventory(container_inventory_ui,player.container_inventory,container_inventory_slot)
+#	if player.equip_inventory: inventory_ui.populate_inventory(equip_inventory_ui,player.equip_inventory,equip_inventory_slot)
+#
+#func hide_inventory(player: Player):
+#	inventory_panel.visible = false
+#	player.mouse_lock = false
+#	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+#	inventory_ui.clear_inventory(player_inventory_ui)
+#	inventory_ui.clear_inventory(container_inventory_ui)
+#	inventory_ui.clear_inventory(equip_inventory_ui)
 
 func on_pickable_node_hovered(player: Player):
 	
@@ -61,9 +61,9 @@ func on_change_action_index_up(player: Player):
 	hover_v_box_container.get_child(player.action_index).set_label_settings(white)
 	player.action_index = player.action_index+1
 	hover_v_box_container.get_child(player.action_index).set_label_settings(highlight)
-
-func on_toggle_inventory(player: Player):
-	if inventory_panel.visible:
-		hide_inventory(player)
-	else:
-		show_inventory(player)
+#
+#func on_toggle_inventory(player: Player):
+#	if inventory_panel.visible:
+#		hide_inventory(player)
+#	else:
+#		show_inventory(player)

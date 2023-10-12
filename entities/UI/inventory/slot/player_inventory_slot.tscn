@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxawhq0ny6ux0"]
+[gd_scene load_steps=9 format=3 uid="uid://q6jarvafwdkj"]
 
 [ext_resource type="Script" path="res://entities/UI/inventory/slot/slot.gd" id="1_vdl3w"]
 [ext_resource type="Theme" uid="uid://kvnbduke4dlq" path="res://assets/ui/purple.tres" id="2_hqjio"]
@@ -6,7 +6,6 @@
 [ext_resource type="StyleBox" uid="uid://b386v20r3t7vc" path="res://assets/ui/theme/press.tres" id="4_7tl7v"]
 [ext_resource type="LabelSettings" uid="uid://8w4a836qn0ma" path="res://assets/ui/label_white.tres" id="5_mmmob"]
 [ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="6_a6rc5"]
-[ext_resource type="FontFile" uid="uid://picvm2g68o2h" path="res://assets/font/ModernDOS9x14.ttf" id="7_llot2"]
 [ext_resource type="Texture2D" uid="uid://678jgb6nyrx2" path="res://assets/textures/environ/grass.png" id="8_bcxt8"]
 [ext_resource type="StyleBox" uid="uid://cdaunom8ggq8b" path="res://assets/ui/theme/highlight.tres" id="9_hu7f5"]
 
@@ -66,7 +65,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
 theme = ExtResource("6_a6rc5")
-theme_override_fonts/font = ExtResource("7_llot2")
 theme_override_font_sizes/font_size = 32
 text = ">"
 
@@ -92,7 +90,6 @@ grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.5708
 theme = ExtResource("6_a6rc5")
-theme_override_fonts/font = ExtResource("7_llot2")
 theme_override_font_sizes/font_size = 32
 text = "<"
 
@@ -122,7 +119,6 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_llot2")
 theme_override_font_sizes/font_size = 32
 text = "X"
 
@@ -145,7 +141,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_a6rc5")
-theme_override_fonts/font = ExtResource("7_llot2")
 theme_override_font_sizes/font_size = 32
 text = "H"
 
@@ -168,7 +163,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_a6rc5")
-theme_override_fonts/font = ExtResource("7_llot2")
 theme_override_font_sizes/font_size = 32
 text = "i"
 

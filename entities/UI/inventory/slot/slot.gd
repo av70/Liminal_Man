@@ -1,12 +1,11 @@
 extends Control
 class_name InventorySlot
+#grid_dictionary[index] = { 'slot': new_slot, 'ID': index, 'x': index % inventory_data.columns,'y': index / inventory_data.columns,'item_data': null }
 
-@onready var weight_label = $Panel/Weight
-@onready var volume_label = $Panel/Volume
-@onready var name_label = $Panel/Name
+signal slot_enter
+signal slot_leave
 
-
-func set_slot_data(item_data:ItemData):
-	name_label.text = item_data.name
-	weight_label.text = '%s' % item_data.mass
-	volume_label.text = '%s' % item_data.volume
+@export var slot_i: int
+@export var x: int
+@export var y: int
+@export var item_data: ItemData

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_2e65t")
-volume = 3.0
-mass = 3.0
-node = ""
+width = 3
+height = 3
+node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
 name = "Apple"

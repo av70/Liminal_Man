@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://1ssi3vvofbne"
-path="res://.godot/imported/ModernDOS8x14.ttf-f92ca3305f9dfbf853e31ee0cc44f0ee.fontdata"
+uid="uid://cgtk476g2atll"
+path="res://.godot/imported/LiberationSans-Bold.ttf-e25676dc7a15ca383cb4b75b736d1d87.fontdata"
 
 [deps]
 
-source_file="res://assets/font/ModernDOS8x14.ttf"
-dest_files=["res://.godot/imported/ModernDOS8x14.ttf-f92ca3305f9dfbf853e31ee0cc44f0ee.fontdata"]
+source_file="res://assets/font/LiberationSans-Bold.ttf"
+dest_files=["res://.godot/imported/LiberationSans-Bold.ttf-e25676dc7a15ca383cb4b75b736d1d87.fontdata"]
 
 [params]
 

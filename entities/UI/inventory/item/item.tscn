@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciudb8iub4aj"]
+
+[ext_resource type="Texture2D" uid="uid://herdrc64hgor" path="res://assets/ui/inventory/item.png" id="1_3sai4"]
+[ext_resource type="Script" path="res://entities/UI/inventory/item/item.gd" id="1_i3ssp"]
+[ext_resource type="Texture2D" uid="uid://d3q3e3isbltvl" path="res://assets/textures/skabidi.jpg" id="2_cnu8b"]
+
+[node name="Item" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 39.0
+offset_bottom = 39.0
+script = ExtResource("1_i3ssp")
+
+[node name="Gradient" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.333333)
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3sai4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.333333)
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_cnu8b")
+expand_mode = 1

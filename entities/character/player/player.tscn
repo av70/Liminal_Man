@@ -25,14 +25,16 @@
 [sub_resource type="Resource" id="Resource_7ltmt"]
 script = ExtResource("4_ixsss")
 item_array = Array[Resource("res://entities/item/item_data.gd")]([ExtResource("2_gtwoj"), ExtResource("2_qf321")])
-max_volume = 9
-max_mass = 10
+title = "INVENTORY"
+columns = 6
+rows = 3
 
 [sub_resource type="Resource" id="Resource_680pp"]
 script = ExtResource("4_ixsss")
 item_array = Array[Resource("res://entities/item/item_data.gd")]([])
-max_volume = 9
-max_mass = 10
+title = "INVENTORY"
+columns = 6
+rows = 3
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk7ra"]
 radius = 0.3
