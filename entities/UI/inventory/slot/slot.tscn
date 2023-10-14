@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d12qioiyfr51h" path="res://assets/ui/inventory/slot.png" id="1_yp0tb"]
 [ext_resource type="Script" path="res://entities/UI/inventory/slot/slot.gd" id="1_yp4o3"]
-[ext_resource type="StyleBox" uid="uid://ba14r718i0di5" path="res://assets/ui/inventory/green_slot.tres" id="3_3nkjp"]
+[ext_resource type="StyleBox" uid="uid://crd02a1huiqmc" path="res://assets/ui/theme/green/green_press_no_outline.tres" id="3_be4qg"]
 
 [node name="Slot" type="PanelContainer"]
 self_modulate = Color(1, 1, 1, 0)
@@ -18,4 +18,4 @@ texture = ExtResource("1_yp0tb")
 [node name="Panel" type="Panel" parent="."]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = ExtResource("3_3nkjp")
+theme_override_styles/panel = ExtResource("3_be4qg")

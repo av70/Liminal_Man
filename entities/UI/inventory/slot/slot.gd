@@ -5,7 +5,7 @@ class_name InventorySlot
 signal slot_enter
 signal slot_leave
 
-@export var slot_i: int
-@export var x: int
-@export var y: int
-@export var item_data: ItemData
+var slot_i: int
+var x: int
+var y: int
+var item: Item

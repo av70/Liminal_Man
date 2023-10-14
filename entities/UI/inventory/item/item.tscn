@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciudb8iub4aj"]
+[gd_scene load_steps=5 format=3 uid="uid://ciudb8iub4aj"]
 
 [ext_resource type="Texture2D" uid="uid://herdrc64hgor" path="res://assets/ui/inventory/item.png" id="1_3sai4"]
 [ext_resource type="Script" path="res://entities/UI/inventory/item/item.gd" id="1_i3ssp"]
 [ext_resource type="Texture2D" uid="uid://d3q3e3isbltvl" path="res://assets/textures/skabidi.jpg" id="2_cnu8b"]
+[ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="4_5k81e"]
 
 [node name="Item" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 39.0
-offset_bottom = 39.0
+offset_right = 38.0
+offset_bottom = 38.0
 script = ExtResource("1_i3ssp")
 
 [node name="Gradient" type="TextureRect" parent="."]
@@ -18,15 +19,40 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_3sai4")
+expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.333333)
 texture_filter = 1
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_cnu8b")
 expand_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("4_5k81e")

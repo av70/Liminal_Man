@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_hxvw8")
-volume = 13.3
-mass = 3.0
+width = 1
+height = 1
 node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
 name = "test"

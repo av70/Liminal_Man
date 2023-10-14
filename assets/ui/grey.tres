@@ -5,5 +5,5 @@
 [resource]
 line_spacing = 2.08165e-12
 font = ExtResource("1_tyb4t")
-font_size = 10
+font_size = 17
 font_color = Color(0.568627, 0.568627, 0.568627, 1)

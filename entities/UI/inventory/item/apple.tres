@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://fpq13tkn4tif"]
 
-[ext_resource type="Script" path="res://entities/item/item_data.gd" id="1_2e65t"]
+[ext_resource type="Script" path="res://entities/item/item_data.gd" id="1_chyl7"]
 
 [resource]
-script = ExtResource("1_2e65t")
+script = ExtResource("1_chyl7")
 width = 3
-height = 3
+height = 2
 node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
 name = "Apple"

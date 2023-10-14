@@ -11,9 +11,9 @@ var move_power: float = 7.0
 @export var mouse_sense: float = 0.1
 @export var mouse_lock: bool = false
 
-@export var player_inventory: InventoryData
-@export var container_inventory: InventoryData
-@export var equip_inventory: InventoryData
+#@export var player_inventory: InventoryData
+#@export var container_inventory: InventoryData
+#@export var equip_inventory: InventoryData
 
 @onready var kinematic_controller_fsm = $KinematicControllerFSM
 @onready var stand_collision = $stand_collision

@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cit60iw7k61od"]
+[gd_scene load_steps=14 format=3 uid="uid://cit60iw7k61od"]
 
+[ext_resource type="Script" path="res://entities/main.gd" id="1_dk5qn"]
 [ext_resource type="Texture2D" uid="uid://0i41hp1h21k6" path="res://textures/office_floor00.png" id="1_vrou2"]
 [ext_resource type="Texture2D" uid="uid://dylissbdfusin" path="res://textures/office_wall00.png" id="2_4ic16"]
 [ext_resource type="PackedScene" uid="uid://ci4c4b21gi4nu" path="res://entities/character/player/player.tscn" id="3_vnhea"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b0ow7epsjpffx" path="res://entities/interactable/pickable/collectable/test_collectable.tscn" id="5_rjv10"]
 [ext_resource type="PackedScene" uid="uid://cvx6l4f1v38vg" path="res://entities/interactable/test_interactable.tscn" id="6_22cuk"]
 [ext_resource type="PackedScene" uid="uid://c4b0scyom400l" path="res://entities/interactable/pickable/collectable/consumable/test_consumable.tscn" id="7_36hdp"]
+[ext_resource type="PackedScene" uid="uid://btd12e4b4mlel" path="res://entities/UI/game_user_interface.tscn" id="9_55s22"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncljj"]
 albedo_texture = ExtResource("1_vrou2")
@@ -41,6 +43,7 @@ _surfaces = [{
 data = PackedVector3Array(-40.125, -0.875, -41.0625, -40.125, -1.375, -41.0625, 119.875, -1.375, -41.0625, -40.125, -0.875, -41.0625, 119.875, -1.375, -41.0625, 119.875, -0.875, -41.0625, -40.125, -0.875, -41.0625, -40.125, -0.875, 118.938, -40.125, -1.375, 118.938, -40.125, -0.875, -41.0625, -40.125, -1.375, 118.938, -40.125, -1.375, -41.0625, 119.875, -1.375, -41.0625, -40.125, -1.375, -41.0625, -40.125, -1.375, 118.938, 119.875, -1.375, -41.0625, -40.125, -1.375, 118.938, 119.875, -1.375, 118.938, 119.875, -0.875, -41.0625, 119.875, -0.875, 118.938, -40.125, -0.875, 118.938, 119.875, -0.875, -41.0625, -40.125, -0.875, 118.938, -40.125, -0.875, -41.0625, 119.875, -0.875, -41.0625, 119.875, -1.375, -41.0625, 119.875, -1.375, 118.938, 119.875, -0.875, -41.0625, 119.875, -1.375, 118.938, 119.875, -0.875, 118.938, -40.125, -0.875, 118.938, 119.875, -0.875, 118.938, 119.875, -1.375, 118.938, -40.125, -0.875, 118.938, 119.875, -1.375, 118.938, -40.125, -1.375, 118.938, -40.125, 3.125, -41.0625, -40.125, -0.875, -41.0625, -39.625, -0.875, -41.0625, -40.125, 3.125, -41.0625, -39.625, -0.875, -41.0625, -39.625, 3.125, -41.0625, -40.125, 3.125, -41.0625, -40.125, 3.125, -36.8125, -40.125, -0.875, -36.8125, -40.125, 3.125, -41.0625, -40.125, -0.875, -36.8125, -40.125, -0.875, -41.0625, -39.625, -0.875, -41.0625, -40.125, -0.875, -41.0625, -40.125, -0.875, -36.8125, -39.625, -0.875, -41.0625, -40.125, -0.875, -36.8125, -39.625, -0.875, -36.8125, -39.625, 3.125, -41.0625, -39.625, 3.125, -36.8125, -40.125, 3.125, -36.8125, -39.625, 3.125, -41.0625, -40.125, 3.125, -36.8125, -40.125, 3.125, -41.0625, -39.625, 3.125, -41.0625, -39.625, -0.875, -41.0625, -39.625, -0.875, -36.8125, -39.625, 3.125, -41.0625, -39.625, -0.875, -36.8125, -39.625, 3.125, -36.8125, -40.125, 3.125, -36.8125, -39.625, 3.125, -36.8125, -39.625, -0.875, -36.8125, -40.125, 3.125, -36.8125, -39.625, -0.875, -36.8125, -40.125, -0.875, -36.8125)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_dk5qn")
 
 [node name="TBLoader" type="TBLoader" parent="."]
 map_resource = "res://maps/office_03.map"
@@ -70,3 +73,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 7)
 
 [node name="Consumable" parent="." instance=ExtResource("7_36hdp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 5, 7)
+
+[node name="GameUserInterface" parent="." instance=ExtResource("9_55s22")]
