@@ -20,7 +20,6 @@ boot_splash/image="res://assets/textures/environ/tile_rock.png"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1200
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale=0.5
 window/vsync/vsync_mode=2

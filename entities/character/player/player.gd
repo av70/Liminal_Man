@@ -11,9 +11,9 @@ var move_power: float = 7.0
 @export var mouse_sense: float = 0.1
 @export var mouse_lock: bool = false
 
-#@export var player_inventory: InventoryData
-#@export var container_inventory: InventoryData
-#@export var equip_inventory: InventoryData
+@export var player_inventory_data: InventoryData
+@export var equip_inventory_data: InventoryData
+@export var container_inventory_data: InventoryData
 
 @onready var kinematic_controller_fsm = $KinematicControllerFSM
 @onready var stand_collision = $stand_collision
@@ -27,7 +27,7 @@ var move_power: float = 7.0
 @onready var static_body_3d = $NeckPivot/Camera/StaticBody3D
 @onready var cursor = $NeckPivot/Camera/Cursor
 
-#signal toggle_inventory
+signal toggle_inventory
 
 signal on_pickable_node_hovered
 signal on_change_action_index_up
@@ -156,15 +156,18 @@ func _input(event):
 		rotate_pick_node(event)
 	
 	if Input.is_action_just_released('rotate_hand_toggle'): mouse_lock = false
-	
+
 ##	inventory
-#	if Input.is_action_just_pressed('toggle_inventory'): 
-#		toggle_inventory.emit(self)
-	
+	if Input.is_action_just_pressed('toggle_inventory'): 
+		toggle_inventory.emit(self)
+
 #	hovered object actions
 #	using is_action_pressed prevents funkyness with lower end mice
-	if Input.is_action_pressed('change_action_index_up') and hovered_node and action_index != hovered_node.actions.keys().max(): on_change_action_index_up.emit(self)
-	elif Input.is_action_pressed('change_action_index_down') and hovered_node and action_index != 0: on_change_action_index_down.emit(self)
+	if Input.is_action_pressed('change_action_index_up') and hovered_node and action_index != hovered_node.actions.keys().max(): 
+		on_change_action_index_up.emit(self)
+	
+	elif Input.is_action_pressed('change_action_index_down') and hovered_node and action_index != 0:
+		on_change_action_index_down.emit(self)
 	
 	if hovered_node is Interactable or Pickable and hovered_node:
 #		shortcut input

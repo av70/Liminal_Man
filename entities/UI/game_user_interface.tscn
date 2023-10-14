@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://btd12e4b4mlel"]
+[gd_scene load_steps=15 format=3 uid="uid://btd12e4b4mlel"]
 
 [ext_resource type="Script" path="res://entities/UI/inventory/game_user_interface.gd" id="1_p4m0b"]
 [ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="1_qxihk"]
@@ -6,15 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="3_m8t2v"]
 [ext_resource type="Texture2D" uid="uid://bs7rk3qpdgd2d" path="res://assets/ui/cursor/Cursor1.png" id="4_eal6c"]
 [ext_resource type="StyleBox" uid="uid://dmoli6fg4tw2a" path="res://assets/ui/theme/normal.tres" id="5_obkcy"]
-[ext_resource type="StyleBox" uid="uid://bv7vg8byqv3eh" path="res://assets/ui/theme/purple/purple_pressed.tres" id="6_l815c"]
-[ext_resource type="Theme" uid="uid://kvnbduke4dlq" path="res://assets/ui/purple.tres" id="8_uocti"]
 [ext_resource type="LabelSettings" uid="uid://8w4a836qn0ma" path="res://assets/ui/label_white.tres" id="9_tmpfg"]
-[ext_resource type="PackedScene" uid="uid://b0cq5jluqnnye" path="res://entities/UI/inventory/slot/container_inventory_slot.tscn" id="11_rmcqr"]
 [ext_resource type="StyleBox" uid="uid://b386v20r3t7vc" path="res://assets/ui/theme/press.tres" id="12_sq02k"]
-[ext_resource type="PackedScene" uid="uid://q6jarvafwdkj" path="res://entities/UI/inventory/slot/player_inventory_slot.tscn" id="13_2qp6h"]
-[ext_resource type="StyleBox" uid="uid://dxnsb1y7aj6ls" path="res://assets/ui/theme/green/green_press.tres" id="14_v2lpu"]
-[ext_resource type="Theme" uid="uid://dgy2qkj5s2rb7" path="res://assets/ui/green.tres" id="15_2gqgq"]
-[ext_resource type="PackedScene" uid="uid://dg7pys4bsmw5s" path="res://entities/UI/inventory/slot/equip_inventory_slot.tscn" id="16_ltuhk"]
 [ext_resource type="Script" path="res://entities/UI/inventory/inventory_handler.gd" id="16_rfklt"]
 [ext_resource type="Texture2D" uid="uid://d12qioiyfr51h" path="res://assets/ui/inventory/slot.png" id="18_l1ael"]
 [ext_resource type="StyleBox" uid="uid://ucivks17o303" path="res://assets/ui/ui_backdrop.tres" id="18_w0h01"]
@@ -28,31 +21,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="GDScript" id="GDScript_f8tri"]
-script/source = "extends GridContainer
-
-
-
-func populate_inventory(inventory_ui: GridContainer,inventory_data: InventoryData,slot):
-	clear_inventory(inventory_ui)
-	var container = inventory_ui.find_child('Container')
-	container.find_child('Panel').find_child('MaxVolume').text = '%s' % inventory_data.max_volume
-	container.find_child('Panel').find_child('MaxWeight').text = '%s' % inventory_data.max_mass
-	for item_data in inventory_data.item_array:
-		if item_data:
-			var new_slot = slot.instantiate()
-			inventory_ui.add_child(new_slot)
-			new_slot.set_slot_data(item_data)
-	
-	inventory_ui.visible = true
-
-func clear_inventory(inventory_ui: GridContainer):
-	inventory_ui.visible = false
-	for child in inventory_ui.get_children():
-		if child is InventorySlot:
-			child.queue_free()
-"
 
 [node name="GameUserInterface" type="CanvasLayer"]
 script = ExtResource("1_p4m0b")
@@ -180,6 +148,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Hover" type="Control" parent="PlayerUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -188,7 +157,6 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.5, 0.5)
 
 [node name="Label" type="Label" parent="PlayerUI/Hover"]
 layout_mode = 1
@@ -232,324 +200,8 @@ offset_right = 82.0
 offset_bottom = -42.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ef0cx")
 
-[node name="Inventory" type="Control" parent="PlayerUI"]
+[node name="InventoryHandler" type="Control" parent="PlayerUI"]
 visible = false
-modulate = Color(1, 1, 1, 0.784314)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -540.0
-offset_top = -300.5
-offset_right = 540.0
-offset_bottom = 299.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory"]
-layout_mode = 1
-offset_right = 1000.0
-offset_bottom = 600.0
-theme_override_styles/panel = ExtResource("5_obkcy")
-
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel"]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("6_l815c")
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PlayerUI/Inventory/Panel"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 1000.0
-offset_bottom = 602.0
-theme = ExtResource("1_qxihk")
-
-[node name="Inventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer"]
-layout_mode = 2
-theme = ExtResource("1_qxihk")
-theme_override_constants/v_separation = 10
-script = SubResource("GDScript_f8tri")
-
-[node name="ContainerInventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory"]
-layout_mode = 2
-theme_override_constants/v_separation = 45
-
-[node name="Dummy" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory"]
-layout_mode = 2
-
-[node name="Container" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -43.0
-offset_right = 904.0
-grow_vertical = 0
-theme = ExtResource("8_uocti")
-theme_override_styles/panel = ExtResource("6_l815c")
-
-[node name="Label" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 170.0
-offset_bottom = 39.0
-theme_override_constants/outline_size = 0
-theme_override_styles/normal = ExtResource("6_l815c")
-text = "CONTAINER"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
-layout_direction = 1
-layout_mode = 2
-anchors_preset = 0
-offset_left = 174.0
-offset_top = 4.0
-offset_right = 209.0
-offset_bottom = 39.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.6
-
-[node name="Button" type="Button" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("8_uocti")
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "X"
-
-[node name="MaxVolume" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 746.0
-offset_top = 4.0
-offset_right = 821.0
-offset_bottom = 39.0
-theme_override_styles/normal = ExtResource("6_l815c")
-text = "000"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="MaxWeight" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 824.0
-offset_top = 4.0
-offset_right = 900.0
-offset_bottom = 39.0
-theme_override_styles/normal = ExtResource("6_l815c")
-text = "000"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="ContainerInventorySlot" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/ContainerInventory" instance=ExtResource("11_rmcqr")]
-layout_mode = 2
-
-[node name="PlayerInventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory"]
-layout_mode = 2
-theme_override_constants/v_separation = 45
-
-[node name="Dummy" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory"]
-layout_mode = 2
-
-[node name="Container" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -43.0
-offset_right = 904.0
-grow_vertical = 0
-theme = ExtResource("8_uocti")
-theme_override_styles/panel = ExtResource("12_sq02k")
-
-[node name="Label" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 170.0
-offset_bottom = 39.0
-theme_override_constants/outline_size = 0
-theme_override_styles/normal = ExtResource("12_sq02k")
-text = "INVENTORY"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
-visible = false
-layout_direction = 1
-layout_mode = 2
-anchors_preset = 0
-offset_left = 174.0
-offset_top = 4.0
-offset_right = 209.0
-offset_bottom = 39.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.6
-
-[node name="Button" type="Button" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("8_uocti")
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "X"
-
-[node name="MaxVolume" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 746.0
-offset_top = 4.0
-offset_right = 821.0
-offset_bottom = 39.0
-theme_override_styles/normal = ExtResource("12_sq02k")
-text = "000"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="MaxWeight" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 824.0
-offset_top = 4.0
-offset_right = 900.0
-offset_bottom = 39.0
-theme_override_styles/normal = ExtResource("12_sq02k")
-text = "000"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="PlayerInventorySlot" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/PlayerInventory" instance=ExtResource("13_2qp6h")]
-layout_mode = 2
-
-[node name="EquipInventory" type="GridContainer" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory"]
-layout_mode = 2
-theme_override_constants/v_separation = 45
-
-[node name="Dummy" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory"]
-layout_mode = 2
-
-[node name="Container" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -43.0
-offset_right = 904.0
-grow_vertical = 0
-theme = ExtResource("8_uocti")
-theme_override_styles/panel = ExtResource("14_v2lpu")
-
-[node name="Label" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 170.0
-offset_bottom = 39.0
-theme_override_constants/outline_size = 0
-theme_override_styles/normal = ExtResource("14_v2lpu")
-text = "CONTAINER"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="Control" type="Control" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
-layout_direction = 1
-layout_mode = 2
-anchors_preset = 0
-offset_left = 174.0
-offset_top = 4.0
-offset_right = 209.0
-offset_bottom = 39.0
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.6
-
-[node name="Button" type="Button" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("15_2gqgq")
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "X"
-
-[node name="MaxVolume" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 746.0
-offset_top = 4.0
-offset_right = 821.0
-offset_bottom = 39.0
-theme_override_styles/normal = ExtResource("14_v2lpu")
-text = "000"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="MaxWeight" type="Label" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory/Container/Panel"]
-layout_mode = 2
-offset_left = 824.0
-offset_top = 4.0
-offset_right = 900.0
-offset_bottom = 39.0
-theme_override_styles/normal = ExtResource("14_v2lpu")
-text = "000"
-label_settings = ExtResource("9_tmpfg")
-horizontal_alignment = 1
-
-[node name="EquipInventorySlot" parent="PlayerUI/Inventory/Panel/ScrollContainer/Inventory/EquipInventory" instance=ExtResource("16_ltuhk")]
-layout_mode = 2
-
-[node name="Inventory3" type="Control" parent="PlayerUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -560,7 +212,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("16_rfklt")
 
-[node name="Inventory4" type="Control" parent="PlayerUI/Inventory3"]
+[node name="Inventory4" type="Control" parent="PlayerUI/InventoryHandler"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -575,7 +227,7 @@ scale = Vector2(2.7, 2.7)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="GridContainer2" type="GridContainer" parent="PlayerUI/Inventory3/Inventory4"]
+[node name="GridContainer2" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -592,43 +244,43 @@ grow_vertical = 2
 theme_override_constants/h_separation = 42
 theme_override_constants/v_separation = 42
 
-[node name="Control" type="Control" parent="PlayerUI/Inventory3/Inventory4/GridContainer2"]
+[node name="Control" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory3/Inventory4/GridContainer2/Control"]
+[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = ExtResource("12_sq02k")
 
-[node name="Control2" type="Control" parent="PlayerUI/Inventory3/Inventory4/GridContainer2"]
+[node name="Control2" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory3/Inventory4/GridContainer2/Control2"]
+[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control2"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = ExtResource("12_sq02k")
 
-[node name="Control3" type="Control" parent="PlayerUI/Inventory3/Inventory4/GridContainer2"]
+[node name="Control3" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory3/Inventory4/GridContainer2/Control3"]
+[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control3"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = ExtResource("12_sq02k")
 
-[node name="Control4" type="Control" parent="PlayerUI/Inventory3/Inventory4/GridContainer2"]
+[node name="Control4" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="PlayerUI/Inventory3/Inventory4/GridContainer2/Control4"]
+[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control4"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = ExtResource("12_sq02k")
 
-[node name="Panel2" type="Panel" parent="PlayerUI/Inventory3/Inventory4"]
+[node name="Panel2" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
 layout_mode = 2
 offset_left = -20.0
 offset_top = -20.0
@@ -640,7 +292,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = ExtResource("5_obkcy")
 
-[node name="Inventory" type="Panel" parent="PlayerUI/Inventory3/Inventory4"]
+[node name="Inventory" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -656,7 +308,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("18_w0h01")
 
-[node name="Grid" type="GridContainer" parent="PlayerUI/Inventory3/Inventory4/Inventory"]
+[node name="Grid" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4/Inventory"]
 layout_mode = 1
 offset_left = 2.0
 offset_top = 2.0
@@ -666,97 +318,97 @@ theme_override_constants/h_separation = -1
 theme_override_constants/v_separation = -1
 columns = 6
 
-[node name="TextureRect" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect2" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect2" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect3" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect3" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect4" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect4" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect5" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect5" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect6" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect6" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect7" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect7" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect8" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect8" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect9" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect9" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect10" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect10" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect11" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect11" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect12" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect12" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect13" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect13" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect14" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect14" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect15" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect15" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect16" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect16" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect17" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect17" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect18" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Inventory/Grid"]
+[node name="TextureRect18" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="Label" type="Label" parent="PlayerUI/Inventory3/Inventory4/Inventory"]
+[node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Inventory4/Inventory"]
 layout_mode = 0
 offset_top = -16.0
 offset_right = 58.0
@@ -766,7 +418,7 @@ text = "INVENTORY"
 label_settings = ExtResource("19_p2ek1")
 vertical_alignment = 1
 
-[node name="EquipedStorage" type="Panel" parent="PlayerUI/Inventory3/Inventory4"]
+[node name="EquipedStorage" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -782,7 +434,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("18_w0h01")
 
-[node name="Grid" type="GridContainer" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage"]
+[node name="Grid" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage"]
 layout_mode = 1
 offset_left = 2.0
 offset_top = 2.0
@@ -792,367 +444,367 @@ theme_override_constants/h_separation = -1
 theme_override_constants/v_separation = -1
 columns = 8
 
-[node name="TextureRect" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect2" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect2" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect3" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect3" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect4" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect4" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect5" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect5" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect6" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect6" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect7" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect7" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect8" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect8" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect9" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect9" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect10" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect10" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect11" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect11" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect12" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect12" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect13" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect13" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect14" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect14" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect15" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect15" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect16" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect16" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect17" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect17" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect18" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect18" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect19" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect19" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect20" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect20" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect21" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect21" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect22" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect22" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect23" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect23" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect24" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect24" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect25" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect25" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect26" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect26" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect27" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect27" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect28" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect28" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect29" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect29" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect30" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect30" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect31" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect31" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect32" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect32" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect33" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect33" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect34" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect34" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect35" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect35" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect36" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect36" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect37" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect37" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect38" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect38" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect39" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect39" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect40" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect40" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect41" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect41" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect42" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect42" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect43" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect43" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect44" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect44" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect45" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect45" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect46" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect46" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect47" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect47" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect48" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect48" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect49" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect49" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect50" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect50" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect51" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect51" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect52" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect52" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect53" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect53" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect54" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect54" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect55" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect55" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect56" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect56" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect57" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect57" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect58" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect58" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect59" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect59" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect60" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect60" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect61" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect61" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect62" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect62" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect63" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect63" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect64" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect64" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect65" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect65" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect66" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect66" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect67" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect67" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect68" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect68" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect69" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect69" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect70" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect70" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect71" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect71" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect72" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage/Grid"]
+[node name="TextureRect72" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="Label" type="Label" parent="PlayerUI/Inventory3/Inventory4/EquipedStorage"]
+[node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage"]
 layout_mode = 0
 offset_top = -16.0
 offset_right = 98.0
@@ -1162,7 +814,7 @@ text = "EQUIPED STORAGE"
 label_settings = ExtResource("19_p2ek1")
 vertical_alignment = 1
 
-[node name="Panel3" type="Panel" parent="PlayerUI/Inventory3/Inventory4"]
+[node name="Panel3" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1177,7 +829,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("18_w0h01")
 
-[node name="GridContainer" type="GridContainer" parent="PlayerUI/Inventory3/Inventory4/Panel3"]
+[node name="GridContainer" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4/Panel3"]
 layout_mode = 1
 offset_left = 2.0
 offset_top = 2.0
@@ -1187,27 +839,27 @@ theme_override_constants/h_separation = -1
 theme_override_constants/v_separation = -1
 columns = 4
 
-[node name="TextureRect" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Panel3/GridContainer"]
+[node name="TextureRect" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect2" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Panel3/GridContainer"]
+[node name="TextureRect2" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect3" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Panel3/GridContainer"]
+[node name="TextureRect3" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="TextureRect4" type="TextureRect" parent="PlayerUI/Inventory3/Inventory4/Panel3/GridContainer"]
+[node name="TextureRect4" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")
 
-[node name="Label" type="Label" parent="PlayerUI/Inventory3/Inventory4/Panel3"]
+[node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Inventory4/Panel3"]
 layout_mode = 0
 offset_top = -16.0
 offset_right = 58.0
@@ -1217,7 +869,7 @@ text = "QUICK-SELECT"
 label_settings = ExtResource("19_p2ek1")
 vertical_alignment = 1
 
-[node name="PlayerInventory" type="Control" parent="PlayerUI/Inventory3"]
+[node name="PlayerInventory" type="Control" parent="PlayerUI/InventoryHandler"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1228,11 +880,11 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.7, 1.7)
 
-[node name="Canvas" parent="PlayerUI/Inventory3/PlayerInventory" instance=ExtResource("22_rhjf3")]
+[node name="Canvas" parent="PlayerUI/InventoryHandler/PlayerInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
 scale = Vector2(1, 1)
 
-[node name="ContainerInventory" type="Control" parent="PlayerUI/Inventory3"]
+[node name="ContainerInventory" type="Control" parent="PlayerUI/InventoryHandler"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1243,11 +895,11 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.7, 1.7)
 
-[node name="Canvas" parent="PlayerUI/Inventory3/ContainerInventory" instance=ExtResource("22_rhjf3")]
+[node name="Canvas" parent="PlayerUI/InventoryHandler/ContainerInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
 scale = Vector2(1, 1)
 
-[node name="EquipInventory" type="Control" parent="PlayerUI/Inventory3"]
+[node name="EquipInventory" type="Control" parent="PlayerUI/InventoryHandler"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1258,6 +910,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.7, 1.7)
 
-[node name="Canvas" parent="PlayerUI/Inventory3/EquipInventory" instance=ExtResource("22_rhjf3")]
+[node name="Canvas" parent="PlayerUI/InventoryHandler/EquipInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
 scale = Vector2(1, 1)

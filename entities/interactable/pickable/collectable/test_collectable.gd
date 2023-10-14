@@ -1,4 +1,4 @@
 extends Collectable
 
 func _ready():
-	actions[1] = {'Title': 'Use', 'Name': 'use','Key': collect,'Func':'on_collect'}
+	actions[1] = {'Title': 'Use', 'Name': 'collect','Key': collect,'Func':'on_collect'}

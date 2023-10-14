@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://dd7lgd442q6pj" path="res://assets/ui/grey.tres" id="4_kxoha"]
 
 [node name="Inventory" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

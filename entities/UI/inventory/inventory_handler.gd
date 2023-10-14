@@ -24,21 +24,12 @@ signal item_dropped
 
 
 func _ready():
-#	item_held = $Item
-#
-#	player_inventory.load_inventory(preload('res://entities/UI/inventory/test_inventory.tres'))
-#	var gorm = preload('res://entities/UI/inventory/test_inventory.tres')
-#	equip_inventory.load_inventory(preload('res://entities/UI/inventory/test_inventory.tres'))
-	load_inventory(equip_inventory,preload('res://entities/UI/inventory/test_equip_inventory.tres'))
-	load_inventory(player_inventory,preload('res://entities/UI/inventory/test_player_inventory.tres'))
-	load_inventory(container_inventory,preload('res://entities/UI/inventory/test_container_inventory.tres'))
-#	container_inventory.position = 
-	
+	set_process_input(false)
+	set_process(false)
 
 func load_inventory(container:Control, data: InventoryData):
 	
 	container.load_inventory(data)
-	
 	
 	for slot in data.slot_data_array:
 		if slot:
@@ -50,10 +41,22 @@ func load_inventory(container:Control, data: InventoryData):
 				place(new_item,container,slot.index)
 			else:
 				find_slot(container,new_item)
-			
+	
+	container.update_inventory_data(data.slot_data_array)
+
+func unload_inventory(container: Control, data: InventoryData ):
+	
+	container.unload_inventory(data)
+	
+
+func unload_items():
+	for child in get_children():
+		if child is Item:
+			child.queue_free()
+
 
 func find_slot(container: Control,new_item:Control) -> void:
-	for i in container.slot_array.size():
+	for i in container.grid_array.size():
 		if container.is_grid_space_available(new_item,i):
 			place(new_item,container,i)
 			return
@@ -100,12 +103,12 @@ func grab(container: Control) -> void:
 func place(item:Control, container: Control,slot_index: int) -> void:
 #	if container.is_grid_space_available(slot.item_data,slot_index):
 	var slot_scale = slot_size*container.parent.scale.x
-	var slot = container.slot_array[slot_index]
+	var slot = container.grid_array[slot_index]
+	var slot_coords = container.get_grid_coords_from_index(slot_index)
 	container.place(item,slot_index)
-	item.position = Vector2(slot_scale*slot.x+container.global_position.x+5,slot_scale*slot.y+container.global_position.y+5)
+	item.position = Vector2(slot_scale*slot_coords.x+container.global_position.x+5,slot_scale*slot_coords.y+container.global_position.y+5)
 	if item == item_held:
 		item_held = null
-#		set_process(false)
 
 func drop_item():
 	item_dropped.emit(item_held)
