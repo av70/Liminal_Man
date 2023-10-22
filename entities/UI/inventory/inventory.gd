@@ -106,7 +106,6 @@ func place(item: Item, slot_index: int):
 				grid_array[get_index_from_grid_coords(x,y)].item = item
 
 func grab_item(index:int):
-	print('e')
 	var slot = grid_array[index]
 	var item = slot.item
 	if item:
@@ -127,7 +126,6 @@ func update_inventory_data(slot_data_array) -> Array:
 	for slot in grid_array:
 		if slot.item:
 			if slot.slot_index == slot.item.index:
-				print('i love men')
 				var slot_data = SlotData.new() 
 				slot_data.index = slot.slot_index
 				slot_data.item_data = slot.item.item_data

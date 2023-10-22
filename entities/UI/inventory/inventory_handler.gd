@@ -73,7 +73,7 @@ func _process(_delta) -> void:
 	place_position = cursor_position
 	if item_held:
 		place_position += item_offset
-		item_held.position = place_position
+		item_held.position = place_position	
 
 func _input(event) -> void:
 	if Input.is_action_just_pressed('inventory_grab'):
@@ -88,9 +88,7 @@ func _input(event) -> void:
 					item_held = null
 
 func grab(container: Control) -> void:
-	print('a')
 	if container and container.has_method('grab_item'):
-		print('fff')
 		item_held = container.grab_item(container.get_index_under_pos(place_position))
 		if item_held:
 
@@ -106,7 +104,7 @@ func place(item:Control, container: Control,slot_index: int) -> void:
 	var slot = container.grid_array[slot_index]
 	var slot_coords = container.get_grid_coords_from_index(slot_index)
 	container.place(item,slot_index)
-	item.position = Vector2(slot_scale*slot_coords.x+container.global_position.x+5,slot_scale*slot_coords.y+container.global_position.y+5)
+	item.position = Vector2(slot_scale*slot_coords.x+container.global_position.x+3,slot_scale*slot_coords.y+container.global_position.y+3)
 	if item == item_held:
 		item_held = null
 

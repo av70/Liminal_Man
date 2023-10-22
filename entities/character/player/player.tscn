@@ -1,8 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://ci4c4b21gi4nu"]
+[gd_scene load_steps=28 format=3 uid="uid://ci4c4b21gi4nu"]
 
 [ext_resource type="Script" path="res://entities/character/player/player.gd" id="1_22u71"]
-[ext_resource type="Resource" uid="uid://fpq13tkn4tif" path="res://entities/UI/inventory/item/apple.tres" id="2_gtwoj"]
 [ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="2_mvdjy"]
+[ext_resource type="Resource" uid="uid://djyjhu3678b10" path="res://entities/item/test_itemdata.tres" id="2_qf321"]
 [ext_resource type="Script" path="res://entities/character/player/player_audio.gd" id="2_td0o2"]
 [ext_resource type="PackedScene" uid="uid://cmrjd352jta3n" path="res://entities/audio/audio_queue.tscn" id="3_lfitr"]
 [ext_resource type="Script" path="res://entities/UI/inventory/slot/slot_data.gd" id="4_i23eo"]
@@ -22,26 +22,34 @@
 [ext_resource type="Script" path="res://entities/character/controller/controller_move_state.gd" id="16_rpl5m"]
 [ext_resource type="Script" path="res://entities/character/controller/controller_idle_state.gd" id="17_yueyo"]
 
-[sub_resource type="Resource" id="Resource_uaqux"]
-script = ExtResource("4_i23eo")
-item_data = ExtResource("2_gtwoj")
-index = 0
-
-[sub_resource type="Resource" id="Resource_kd2ej"]
+[sub_resource type="Resource" id="Resource_x024h"]
 script = ExtResource("4_ixsss")
-slot_data_array = Array[ExtResource("4_i23eo")]([SubResource("Resource_uaqux")])
+slot_data_array = Array[ExtResource("4_i23eo")]([null])
 title = "INVENTORY"
 columns = 6
 rows = 3
 posx = 0
 
-[sub_resource type="Resource" id="Resource_r3wak"]
+[sub_resource type="Resource" id="Resource_uiotd"]
 script = ExtResource("4_ixsss")
-slot_data_array = Array[ExtResource("4_i23eo")]([])
+slot_data_array = Array[ExtResource("4_i23eo")]([null])
 title = "INVENTORY"
-columns = 8
-rows = 8
-posx = -420
+columns = 6
+rows = 3
+posx = -460
+
+[sub_resource type="Resource" id="Resource_6hnlb"]
+script = ExtResource("4_i23eo")
+item_data = ExtResource("2_qf321")
+index = 0
+
+[sub_resource type="Resource" id="Resource_8mtfy"]
+script = ExtResource("4_ixsss")
+slot_data_array = Array[ExtResource("4_i23eo")]([SubResource("Resource_6hnlb")])
+title = "INVENTORY"
+columns = 6
+rows = 3
+posx = 460
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk7ra"]
 radius = 0.3
@@ -52,9 +60,11 @@ radius = 0.3
 height = 1.1
 
 [node name="Player" type="CharacterBody3D"]
+wall_min_slide_angle = 0.0
 script = ExtResource("1_22u71")
-player_inventory_data = SubResource("Resource_kd2ej")
-equip_inventory_data = SubResource("Resource_r3wak")
+player_inventory_data = SubResource("Resource_x024h")
+equip_inventory_data = SubResource("Resource_uiotd")
+container_inventory_data = SubResource("Resource_8mtfy")
 
 [node name="stand_collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.15, 2.08165e-12)

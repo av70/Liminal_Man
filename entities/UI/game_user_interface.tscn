@@ -1,13 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://btd12e4b4mlel"]
+[gd_scene load_steps=13 format=3 uid="uid://btd12e4b4mlel"]
 
 [ext_resource type="Script" path="res://entities/UI/inventory/game_user_interface.gd" id="1_p4m0b"]
 [ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="1_qxihk"]
 [ext_resource type="LabelSettings" uid="uid://d3r6wx2dvhobr" path="res://assets/ui/theme/bold.tres" id="2_15niw"]
 [ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="3_m8t2v"]
 [ext_resource type="Texture2D" uid="uid://bs7rk3qpdgd2d" path="res://assets/ui/cursor/Cursor1.png" id="4_eal6c"]
-[ext_resource type="StyleBox" uid="uid://dmoli6fg4tw2a" path="res://assets/ui/theme/normal.tres" id="5_obkcy"]
 [ext_resource type="LabelSettings" uid="uid://8w4a836qn0ma" path="res://assets/ui/label_white.tres" id="9_tmpfg"]
-[ext_resource type="StyleBox" uid="uid://b386v20r3t7vc" path="res://assets/ui/theme/press.tres" id="12_sq02k"]
 [ext_resource type="Script" path="res://entities/UI/inventory/inventory_handler.gd" id="16_rfklt"]
 [ext_resource type="Texture2D" uid="uid://d12qioiyfr51h" path="res://assets/ui/inventory/slot.png" id="18_l1ael"]
 [ext_resource type="StyleBox" uid="uid://ucivks17o303" path="res://assets/ui/ui_backdrop.tres" id="18_w0h01"]
@@ -157,6 +155,7 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.5, 0.5)
 
 [node name="Label" type="Label" parent="PlayerUI/Hover"]
 layout_mode = 1
@@ -223,596 +222,8 @@ offset_top = 124.0
 offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.7, 2.7)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="GridContainer2" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 67.0
-offset_top = -85.0
-offset_right = 197.0
-offset_bottom = 85.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 42
-theme_override_constants/v_separation = 42
-
-[node name="Control" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("12_sq02k")
-
-[node name="Control2" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control2"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("12_sq02k")
-
-[node name="Control3" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control3"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("12_sq02k")
-
-[node name="Control4" type="Control" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4/GridContainer2/Control4"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("12_sq02k")
-
-[node name="Panel2" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
-layout_mode = 2
-offset_left = -20.0
-offset_top = -20.0
-offset_right = -20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_styles/panel = ExtResource("5_obkcy")
-
-[node name="Inventory" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -119.5
-offset_top = -60.0
-offset_right = 119.5
-offset_bottom = 62.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("18_w0h01")
-
-[node name="Grid" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4/Inventory"]
-layout_mode = 1
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 237.0
-offset_bottom = 120.0
-theme_override_constants/h_separation = -1
-theme_override_constants/v_separation = -1
-columns = 6
-
-[node name="TextureRect" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect2" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect3" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect4" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect5" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect6" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect7" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect8" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect9" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect10" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect11" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect12" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect13" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect14" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect15" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect16" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect17" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect18" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Inventory/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Inventory4/Inventory"]
-layout_mode = 0
-offset_top = -16.0
-offset_right = 58.0
-offset_bottom = -3.0
-theme_override_styles/normal = ExtResource("18_w0h01")
-text = "INVENTORY"
-label_settings = ExtResource("19_p2ek1")
-vertical_alignment = 1
-
-[node name="EquipedStorage" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -441.0
-offset_top = -177.0
-offset_right = -124.0
-offset_bottom = 179.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = ExtResource("18_w0h01")
-
-[node name="Grid" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage"]
-layout_mode = 1
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 237.0
-offset_bottom = 120.0
-theme_override_constants/h_separation = -1
-theme_override_constants/v_separation = -1
-columns = 8
-
-[node name="TextureRect" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect2" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect3" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect4" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect5" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect6" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect7" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect8" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect9" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect10" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect11" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect12" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect13" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect14" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect15" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect16" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect17" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect18" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect19" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect20" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect21" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect22" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect23" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect24" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect25" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect26" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect27" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect28" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect29" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect30" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect31" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect32" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect33" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect34" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect35" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect36" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect37" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect38" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect39" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect40" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect41" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect42" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect43" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect44" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect45" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect46" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect47" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect48" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect49" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect50" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect51" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect52" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect53" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect54" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect55" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect56" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect57" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect58" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect59" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect60" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect61" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect62" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect63" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect64" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect65" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect66" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect67" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect68" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect69" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect70" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect71" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="TextureRect72" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
-layout_mode = 2
-texture = ExtResource("18_l1ael")
-
-[node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Inventory4/EquipedStorage"]
-layout_mode = 0
-offset_top = -16.0
-offset_right = 98.0
-offset_bottom = -3.0
-theme_override_styles/normal = ExtResource("18_w0h01")
-text = "EQUIPED STORAGE"
-label_settings = ExtResource("19_p2ek1")
-vertical_alignment = 1
 
 [node name="Panel3" type="Panel" parent="PlayerUI/InventoryHandler/Inventory4"]
 layout_mode = 1
@@ -861,9 +272,10 @@ texture = ExtResource("18_l1ael")
 
 [node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Inventory4/Panel3"]
 layout_mode = 0
-offset_top = -16.0
-offset_right = 58.0
-offset_bottom = -3.0
+offset_left = -0.764709
+offset_top = -23.6765
+offset_right = 127.235
+offset_bottom = -3.67648
 theme_override_styles/normal = ExtResource("18_w0h01")
 text = "QUICK-SELECT"
 label_settings = ExtResource("19_p2ek1")
@@ -878,7 +290,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.7, 1.7)
 
 [node name="Canvas" parent="PlayerUI/InventoryHandler/PlayerInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
@@ -893,7 +304,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.7, 1.7)
 
 [node name="Canvas" parent="PlayerUI/InventoryHandler/ContainerInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
@@ -908,8 +318,41 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.7, 1.7)
 
 [node name="Canvas" parent="PlayerUI/InventoryHandler/EquipInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
 scale = Vector2(1, 1)
+
+[node name="Control" type="Control" parent="PlayerUI/InventoryHandler"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel3" type="Panel" parent="PlayerUI/InventoryHandler/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -158.5
+offset_right = 239.0
+offset_bottom = 158.5
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_w0h01")
+
+[node name="Label" type="Label" parent="PlayerUI/InventoryHandler/Control/Panel3"]
+layout_mode = 0
+offset_left = -0.764709
+offset_top = -23.6765
+offset_right = 127.235
+offset_bottom = -3.67648
+theme_override_styles/normal = ExtResource("18_w0h01")
+text = "QUICK-SELECT"
+label_settings = ExtResource("19_p2ek1")
+vertical_alignment = 1

@@ -11,18 +11,16 @@ config_version=5
 [application]
 
 config/name="Liminal-Man"
-run/main_scene="res://node_3d.tscn"
+run/main_scene="res://node.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://assets/textures/environ/tile_rock.png"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1200
 window/stretch/mode="viewport"
-window/stretch/scale=0.5
-window/vsync/vsync_mode=2
+window/stretch/aspect="keep_width"
 
 [editor_plugins]
 
@@ -162,18 +160,13 @@ inventory_grab={
 
 [physics]
 
+common/physics_jitter_fix=1.0
 3d/physics_engine="JoltPhysics3D"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
-shading/overrides/force_vertex_shading=true
-camera/depth_of_field/depth_of_field_bokeh_shape=0
-camera/depth_of_field/depth_of_field_bokeh_quality=0
-environment/ssao/quality=0
-environment/glow/upscale_mode=0
-environment/screen_space_reflection/roughness_quality=0
-environment/subsurface_scattering/subsurface_scattering_quality=0
-environment/subsurface_scattering/subsurface_scattering_scale=0.001
-environment/subsurface_scattering/subsurface_scattering_depth_scale=0.001
-environment/volumetric_fog/use_filter=0
+lights_and_shadows/use_physical_light_units=true
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
+shading/overrides/force_vertex_shading.mobile=false
+anti_aliasing/screen_space_roughness_limiter/enabled=false

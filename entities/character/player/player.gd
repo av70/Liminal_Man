@@ -3,13 +3,14 @@ class_name Player
 
 var rotation_power: float = 0.4
 var move_power: float = 7.0
+var neck_position: Vector3
 
-@export var picked_node: Pickable
-@export var hovered_node: PhysicsBody3D
-@export var action_index: int = 0
+var picked_node: Pickable
+var hovered_node: PhysicsBody3D
+var action_index: int = 0
 
-@export var mouse_sense: float = 0.1
-@export var mouse_lock: bool = false
+var mouse_sense: float = 0.1
+var mouse_lock: bool = false
 
 @export var player_inventory_data: InventoryData
 @export var equip_inventory_data: InventoryData
@@ -73,8 +74,6 @@ func on_pick_node():
 	var b = hand.global_transform.origin
 	picked_node.set_linear_velocity((b-a)*move_power)
 	cursor.global_position = hovered_node.global_position # good code moron
-	if Input.is_action_just_pressed('move_hand_away') and hand.position.z >= -3 : hand.position.z -= 0.25
-	elif Input.is_action_just_pressed('move_hand_close') and hand.position.z <= -1 : hand.position.z += 0.25
 
 func rotate_pick_node(event):
 	if picked_node:
@@ -114,7 +113,7 @@ func _physics_process(delta):
 	
 	if kinematic_controller_fsm.current_state is KinematicGroundState:
 		if  !Input.is_action_pressed("strafe"): # bad no good
-			neck_pivot.rotation.z = lerp(neck_pivot.rotation.z,0.0,20*delta)
+			neck_pivot.rotation.z = lerp(neck_pivot.rotation.z,0.0,10*delta)
 		if Input.is_action_pressed('sneak'):
 			current_speed = sneak_speed
 			neck_pivot.position.y = lerp(neck_pivot.position.y,1.0,delta*3)
@@ -137,6 +136,7 @@ func _physics_process(delta):
 	if picked_node: on_pick_node()
 	elif hovered_node: on_hover_node()
 
+
 func _input(event):
 	if event is InputEventMouseMotion and !mouse_lock:
 		rotate_y(deg_to_rad(-event.relative.x*mouse_sense))
@@ -148,7 +148,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.is_action_just_pressed("jump"): 
-			jump.emit()
+		if kinematic_controller_fsm.current_state is KinematicGroundState: jump.emit()
 	
 #	rotate grabbed object
 	if Input.is_action_pressed('rotate_hand_toggle') and picked_node:
@@ -163,21 +163,28 @@ func _input(event):
 
 #	hovered object actions
 #	using is_action_pressed prevents funkyness with lower end mice
-	if Input.is_action_pressed('change_action_index_up') and hovered_node and action_index != hovered_node.actions.keys().max(): 
-		on_change_action_index_up.emit(self)
-	
-	elif Input.is_action_pressed('change_action_index_down') and hovered_node and action_index != 0:
-		on_change_action_index_down.emit(self)
-	
-	if hovered_node is Interactable or Pickable and hovered_node:
-#		shortcut input
-		for i in hovered_node.actions.keys(): 
-			if Input.is_action_just_pressed(hovered_node.actions[i]['Name']) and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-				on_input(i)
+	if hovered_node:
 		
-#		mouse input
-		if Input.is_action_just_pressed(hovered_node.actions[action_index]['Name']) and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			on_input(action_index)
+		if Input.is_action_pressed('change_action_index_up') and action_index != hovered_node.actions.keys().max(): 
+			on_change_action_index_up.emit(self)
 		
-		if Input.is_action_just_released('grab'):
-			on_node_unpicked()
+		elif Input.is_action_pressed('change_action_index_down') and action_index != 0:
+			on_change_action_index_down.emit(self)
+		
+		
+		if hovered_node is Interactable or Pickable:
+#			shortcut input
+			for i in hovered_node.actions.keys(): 
+				if Input.is_action_just_pressed(hovered_node.actions[i]['Name']) and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+					on_input(i)
+			
+#			mouse input
+			if Input.is_action_just_pressed(hovered_node.actions[action_index]['Name']) and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+				on_input(action_index)
+			
+			if Input.is_action_just_released('grab'):
+				on_node_unpicked()
+	
+	if picked_node:
+		if Input.is_action_just_pressed('move_hand_away') and hand.position.z >= -1.5 : hand.position.z -= 0.125
+		elif Input.is_action_just_pressed('move_hand_close') and hand.position.z <= -0.25 : hand.position.z += 0.125
