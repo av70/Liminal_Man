@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://btd12e4b4mlel"]
+[gd_scene load_steps=14 format=3 uid="uid://btd12e4b4mlel"]
 
 [ext_resource type="Script" path="res://entities/UI/inventory/game_user_interface.gd" id="1_p4m0b"]
 [ext_resource type="Theme" uid="uid://c6tgkl2u3sp61" path="res://assets/ui/game_ui_theme.tres" id="1_qxihk"]
@@ -19,6 +19,19 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8w2uo"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.662745)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+shadow_color = Color(1, 1, 1, 0.462745)
 
 [node name="GameUserInterface" type="CanvasLayer"]
 script = ExtResource("1_p4m0b")
@@ -293,7 +306,6 @@ grow_vertical = 2
 
 [node name="Canvas" parent="PlayerUI/InventoryHandler/PlayerInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
-scale = Vector2(1, 1)
 
 [node name="ContainerInventory" type="Control" parent="PlayerUI/InventoryHandler"]
 layout_mode = 1
@@ -307,7 +319,6 @@ grow_vertical = 2
 
 [node name="Canvas" parent="PlayerUI/InventoryHandler/ContainerInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
-scale = Vector2(1, 1)
 
 [node name="EquipInventory" type="Control" parent="PlayerUI/InventoryHandler"]
 layout_mode = 1
@@ -321,9 +332,9 @@ grow_vertical = 2
 
 [node name="Canvas" parent="PlayerUI/InventoryHandler/EquipInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
-scale = Vector2(1, 1)
 
 [node name="Control" type="Control" parent="PlayerUI/InventoryHandler"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -356,3 +367,18 @@ theme_override_styles/normal = ExtResource("18_w0h01")
 text = "QUICK-SELECT"
 label_settings = ExtResource("19_p2ek1")
 vertical_alignment = 1
+
+[node name="ItemBackdrop" type="Panel" parent="PlayerUI/InventoryHandler"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8w2uo")

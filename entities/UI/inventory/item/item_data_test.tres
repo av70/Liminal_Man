@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c7lg8h0d75gmn"]
+
+[ext_resource type="Script" path="res://entities/item/item_data.gd" id="1_jp0f1"]
+
+[resource]
+script = ExtResource("1_jp0f1")
+width = 3
+height = 2
+node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
+name = "name that describes the item"

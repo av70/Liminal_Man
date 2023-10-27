@@ -3,8 +3,13 @@ class_name Item
 
 var item_data: ItemData = null
 var index: int
+var slot_size: int = 40
+var rotated_width: int
+var rotated_height: int
+var rotated: bool
 
-func instance(container_scale:float):
-	size.x = (size.x*item_data.width-(container_scale))
-	size.y = (size.y*item_data.height-(container_scale))
-	scale = Vector2(1*container_scale,1*container_scale)
+func resize(container_scale:float):
+
+	size.x = (rotated_width * (slot_size-1))
+	size.y = (rotated_height * (slot_size-1))
+	scale = Vector2(1 * container_scale, 1 * container_scale)

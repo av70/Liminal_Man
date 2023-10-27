@@ -12,6 +12,7 @@ script = ExtResource("1_yp4o3")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("1_yp0tb")
 

@@ -148,7 +148,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	if Input.is_action_just_pressed("jump"): 
-		if kinematic_controller_fsm.current_state is KinematicGroundState: jump.emit()
+		if kinematic_controller_fsm.current_state is KinematicGroundState or is_on_floor(): jump.emit()
 	
 #	rotate grabbed object
 	if Input.is_action_pressed('rotate_hand_toggle') and picked_node:
@@ -186,5 +186,5 @@ func _input(event):
 				on_node_unpicked()
 	
 	if picked_node:
-		if Input.is_action_just_pressed('move_hand_away') and hand.position.z >= -1.5 : hand.position.z -= 0.125
-		elif Input.is_action_just_pressed('move_hand_close') and hand.position.z <= -0.25 : hand.position.z += 0.125
+		if Input.is_action_pressed('move_hand_away') and hand.position.z >= -1.5 : hand.position.z -= 0.125
+		elif Input.is_action_pressed('move_hand_close') and hand.position.z <= -0.25 : hand.position.z += 0.125

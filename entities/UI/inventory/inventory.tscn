@@ -6,7 +6,6 @@
 [ext_resource type="LabelSettings" uid="uid://dd7lgd442q6pj" path="res://assets/ui/grey.tres" id="4_kxoha"]
 
 [node name="Inventory" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -15,7 +14,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.7, 1.7)
 size_flags_horizontal = 4
 script = ExtResource("1_hqcbc")
 
@@ -45,22 +43,26 @@ theme_override_constants/v_separation = -1
 columns = 2
 
 [node name="TextureRect" type="TextureRect" parent="Panel/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_afrwt")
 
 [node name="TextureRect2" type="TextureRect" parent="Panel/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_afrwt")
 
 [node name="TextureRect3" type="TextureRect" parent="Panel/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_afrwt")
 
 [node name="TextureRect4" type="TextureRect" parent="Panel/Grid"]
-modulate = Color(0.668629, 0.668629, 0.668629, 1)
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_afrwt")
 
