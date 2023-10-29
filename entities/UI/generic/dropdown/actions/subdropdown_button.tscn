@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdkpxv7pskw3i"]
+
+[ext_resource type="Theme" uid="uid://5gq6jb150yuf" path="res://assets/ui/dropdown.tres" id="1_nbvev"]
+[ext_resource type="FontFile" uid="uid://cgtk476g2atll" path="res://assets/font/LiberationSans-Bold.ttf" id="2_5h8vl"]
+[ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="3_pctwd"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/subdropdown_button.gd" id="4_ddr4k"]
+[ext_resource type="Texture2D" uid="uid://b0q8n2ysn06hc" path="res://assets/ui/generic/expand.png" id="5_eh2sr"]
+
+[node name="Button" type="Button"]
+offset_right = 200.0
+offset_bottom = 22.0
+theme = ExtResource("1_nbvev")
+theme_override_colors/font_color = Color(0.145098, 0.145098, 0.145098, 1)
+theme_override_fonts/font = ExtResource("2_5h8vl")
+theme_override_styles/normal = ExtResource("3_pctwd")
+text = "text"
+alignment = 0
+script = ExtResource("4_ddr4k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.145098, 0.145098, 0.145098, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -7.5
+offset_right = -4.0
+offset_bottom = 7.5
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("5_eh2sr")
+expand_mode = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

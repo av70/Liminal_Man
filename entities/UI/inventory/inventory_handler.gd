@@ -1,15 +1,21 @@
 extends Control
 
 var item_held: Control
-var hovered_container: Control
+var item_dropdowned: Control
 var item_offset: Vector2
+var hovered_container: Control
 
 var cursor_position: Vector2
 var place_position: Vector2
 var place_position_slot_i: int
 var place_slot_center: Vector2
 
+var dropdown: Control
+
 var item_scene = preload('res://entities/UI/inventory/item/item.tscn')
+
+var dropdown_scene = preload("res://entities/UI/generic/dropdown/dropdown.tscn")
+var dropdown_data  = preload("res://temp/new_resource.tres")
 
 signal item_dropped
 
@@ -35,23 +41,43 @@ func get_container_under_cursor(pos) -> Control:
 			return container
 	return null
 
+func on_item_action(action_data: DropdownActionData):
+	match action_data.function:
+		'drop':
+			print(action_data.action)
+			dropdown.queue_free()
+			dropdown = null
+		
+		'hold':
+			print(action_data.action)
+			dropdown.queue_free()
+			dropdown = null
+		
+		'quick_select':
+			print(action_data.action)
+			dropdown.queue_free()
+			dropdown = null
+	print(action_data.function)
+	print('eggeg')
+	
+#	if action_data.type != 'SubdropdownButton': dropdown.queue_free()
+
 #------------------------------------------------------------------------------
 
-func _ready():
-	set_process_input(false)
-	set_process(false)
-
 func load_inventory(container:Control, data: InventoryData):
-	
+
+
+
 	container.load_inventory(data)
 	
 	for i in data.slot_data_array.size():
+		
 		var slot_data = data.slot_data_array[i]
+		
 		if slot_data:
 		
 			var new_item = item_scene.instantiate()
 			new_item.item_data = slot_data.item_data
-			print(slot_data.item_is_rotated)
 			if !slot_data.item_is_rotated:
 				new_item.rotated_width = new_item.item_data.width
 				new_item.rotated_height = new_item.item_data.height
@@ -64,6 +90,7 @@ func load_inventory(container:Control, data: InventoryData):
 			
 			new_item.resize(container.parent.scale.x)
 			add_child(new_item)
+			
 			if container.is_grid_space_available(new_item,slot_data.index):
 				place(new_item.rotated,new_item,container,slot_data.index)
 			else:
@@ -88,37 +115,44 @@ func unload_items():
 
 # magic numbers are for borders/outlines of items/slots. probably.
 
+func _ready():
+	set_process_input(false)
+	set_process(false)
+
 func _process(delta) -> void:
+	
 	cursor_position = get_global_mouse_position()
 	place_position = cursor_position
 	hovered_container = get_container_under_cursor(place_position)
 	
 	if item_held:
+	
 		place_position += item_offset
 		item_held.position = place_position
 		place_slot_center = place_position - Vector2(item_held.slot_size * -0.5, item_held.slot_size * -0.5)
 		
-		if hovered_container:
+		if hovered_container: 
+			
 			place_position_slot_i = hovered_container.get_index_under_pos(place_slot_center)
 			
 			if hovered_container.is_grid_space_available( item_held , place_position_slot_i):
+		
 				item_backdrop.visible = true
 				item_backdrop.global_position = lerp( item_backdrop.global_position, hovered_container.grid_array[place_position_slot_i].global_position, 25 * delta)
 				item_backdrop.size.x = hovered_container.parent.scale.x*( item_held.rotated_width * item_held.slot_size * hovered_container.scale.x)
 				item_backdrop.size.y = hovered_container.parent.scale.y*( item_held.rotated_height * item_held.slot_size * hovered_container.scale.y)
-	
 			
 			else: item_backdrop.visible = false
 	
 		else: item_backdrop.visible = false
 
 func _input(event) -> void:
+	
 	if Input.is_action_just_pressed('inventory_grab'):
 		
-		if !item_held:
-			grab(hovered_container)
+		if !item_held and !dropdown: grab(hovered_container)
 		
-		elif item_held:
+		elif item_held and !dropdown:
 			if hovered_container:
 			
 				if hovered_container.is_grid_space_available(item_held,place_position_slot_i):
@@ -130,29 +164,47 @@ func _input(event) -> void:
 	if Input.is_action_just_pressed('inventory_rotate') and item_held and hovered_container:
 		
 		if item_held.rotated:
+			
 			item_held.rotated_width = item_held.item_data.width
 			item_held.rotated_height = item_held.item_data.height
 			item_held.rotated = false
 		
 		else:
+			
 			item_held.rotated_width = item_held.item_data.height
 			item_held.rotated_height = item_held.item_data.width
 			item_held.rotated = true
 		
 		item_held.resize(hovered_container.scale.x)
-
+	
+	if Input.is_action_just_pressed('dropdown_interact'):
+		
+		if hovered_container and !item_held:
+			if hovered_container.get_item(hovered_container.get_index_under_pos(cursor_position)):
+				if !dropdown:
+					
+					dropdown = dropdown_scene.instantiate()
+					item_dropdowned = hovered_container.get_item(hovered_container.get_index_under_pos(cursor_position))
+					
+					add_child(dropdown)
+					dropdown.load_actions(dropdown_data)
+					dropdown.global_position = get_global_mouse_position()
+					dropdown.action.connect(on_item_action)
+	
+	elif !event is InputEventMouseMotion and dropdown:
+		if !dropdown.is_pos_in_bounds(cursor_position): 
+			dropdown.queue_free() 
+			dropdown = null
 #------------------------------------------------------------------------------
 
 func grab(container: Control) -> void:
 	if container and container.has_method('grab_item'):
 		item_held = container.grab_item(container.get_index_under_pos(place_position))
+	
 		if item_held:
-#			last_container = container
-#			last_global_position = item_held.global_position
+			
 			item_offset = item_held.global_position - cursor_position
-			
 			move_child(item_held,get_child_count())
-			
 			hovered_container.grid_array[hovered_container.get_index_under_pos(place_slot_center)].global_position
 
 func place(item_is_rotated: bool, item: Item, container: Control,grid_index: int) -> void:

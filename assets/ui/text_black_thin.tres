@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cvn71n5re525s"]
+
+[ext_resource type="FontFile" uid="uid://c2p27pednc3qy" path="res://assets/font/LiberationSans-Regular.ttf" id="1_jvr24"]
+
+[resource]
+line_spacing = 2.08165e-12
+font = ExtResource("1_jvr24")
+font_size = 15
+font_color = Color(0.203922, 0.203922, 0.203922, 1)

@@ -1,0 +1,105 @@
+[gd_resource type="Resource" script_class="DropdownData" load_steps=16 format=3 uid="uid://slf2hf33fpik"]
+
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/dropdown_action_data.gd" id="1_cv5lx"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/dropdown_data.gd" id="1_skfw1"]
+[ext_resource type="Resource" uid="uid://2uqtu6qbcbje" path="res://temp/sub.tres" id="2_tx0ti"]
+
+[sub_resource type="Resource" id="Resource_bmop4"]
+script = ExtResource("1_cv5lx")
+type = "Title"
+action = " "
+function = " "
+text = "Apple"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_m0v4s"]
+script = ExtResource("1_cv5lx")
+type = "Blurb"
+action = " "
+function = " "
+text = "af af af af af af af af af af af af af af af af af "
+lines = 1
+
+[sub_resource type="Resource" id="Resource_g6k1d"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "drop"
+function = "drop"
+text = "Drop"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_1535j"]
+script = ExtResource("1_cv5lx")
+type = "SubdropdownButton"
+action = " "
+function = " "
+text = "Hold"
+lines = 0
+sub_dropdown_data = ExtResource("2_tx0ti")
+
+[sub_resource type="Resource" id="Resource_buvfu"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "qs0"
+function = "quick_select"
+text = "Slot 0"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_k15i3"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "qs1"
+function = "quick_select"
+text = "Slot 1"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_6ky71"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "qs2 "
+function = "quick_select"
+text = "Slot 2"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_3b7ym"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "qs3 "
+function = "quick_select"
+text = "Slot 3"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_5kq6a"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "qs4"
+function = "quick_select"
+text = "Slot 4"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_pc42w"]
+script = ExtResource("1_cv5lx")
+type = "Button"
+action = "qs5"
+function = "quick_select"
+text = "Slot 5"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_lskul"]
+script = ExtResource("1_skfw1")
+actions_array = Array[ExtResource("1_cv5lx")]([SubResource("Resource_buvfu"), SubResource("Resource_k15i3"), SubResource("Resource_6ky71"), SubResource("Resource_3b7ym"), SubResource("Resource_5kq6a"), SubResource("Resource_pc42w")])
+width = 150
+
+[sub_resource type="Resource" id="Resource_k5hpy"]
+script = ExtResource("1_cv5lx")
+type = "SubdropdownButton"
+action = " "
+function = " "
+text = "Quick Select"
+lines = 0
+sub_dropdown_data = SubResource("Resource_lskul")
+
+[resource]
+script = ExtResource("1_skfw1")
+actions_array = Array[ExtResource("1_cv5lx")]([SubResource("Resource_bmop4"), SubResource("Resource_m0v4s"), SubResource("Resource_g6k1d"), SubResource("Resource_1535j"), SubResource("Resource_k5hpy")])
+width = 200

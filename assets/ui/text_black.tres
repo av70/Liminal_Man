@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dgm3ivr4b6njh"]
+
+[ext_resource type="FontFile" uid="uid://cgtk476g2atll" path="res://assets/font/LiberationSans-Bold.ttf" id="1_x4ep3"]
+
+[resource]
+line_spacing = 2.08165e-12
+font = ExtResource("1_x4ep3")
+font_size = 17
+font_color = Color(0.203922, 0.203922, 0.203922, 1)

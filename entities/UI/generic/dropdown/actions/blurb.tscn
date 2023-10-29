@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bom3y6fkmiqrw"]
+
+[ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="1_ysk6v"]
+[ext_resource type="LabelSettings" uid="uid://cvn71n5re525s" path="res://assets/ui/text_black_thin.tres" id="2_jpmt2"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/blurb.gd" id="3_ij715"]
+
+[node name="Blurb" type="Label"]
+offset_right = 200.0
+offset_bottom = 22.0
+size_flags_vertical = 1
+theme_override_styles/normal = ExtResource("1_ysk6v")
+text = "text
+text"
+label_settings = ExtResource("2_jpmt2")
+vertical_alignment = 1
+autowrap_mode = 2
+script = ExtResource("3_ij715")

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://entities/UI/inventory/inventory_handler.gd" id="16_rfklt"]
 [ext_resource type="Texture2D" uid="uid://d12qioiyfr51h" path="res://assets/ui/inventory/slot.png" id="18_l1ael"]
 [ext_resource type="StyleBox" uid="uid://ucivks17o303" path="res://assets/ui/ui_backdrop.tres" id="18_w0h01"]
-[ext_resource type="LabelSettings" uid="uid://dd7lgd442q6pj" path="res://assets/ui/grey.tres" id="19_p2ek1"]
+[ext_resource type="LabelSettings" uid="uid://dd7lgd442q6pj" path="res://assets/ui/text_grey.tres" id="19_p2ek1"]
 [ext_resource type="PackedScene" uid="uid://dk4skyrp5tcoh" path="res://entities/UI/inventory/inventory.tscn" id="22_rhjf3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ef0cx"]
@@ -333,6 +333,14 @@ grow_vertical = 2
 [node name="Canvas" parent="PlayerUI/InventoryHandler/EquipInventory" instance=ExtResource("22_rhjf3")]
 layout_mode = 1
 
+[node name="Control" type="Control" parent="PlayerUI/InventoryHandler/EquipInventory"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Control" type="Control" parent="PlayerUI/InventoryHandler"]
 visible = false
 layout_mode = 1
@@ -369,6 +377,7 @@ label_settings = ExtResource("19_p2ek1")
 vertical_alignment = 1
 
 [node name="ItemBackdrop" type="Panel" parent="PlayerUI/InventoryHandler"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcx8ae4gpe3tg"]
+
+[ext_resource type="Theme" uid="uid://5gq6jb150yuf" path="res://assets/ui/dropdown.tres" id="1_m4yaq"]
+[ext_resource type="FontFile" uid="uid://cgtk476g2atll" path="res://assets/font/LiberationSans-Bold.ttf" id="2_vunts"]
+[ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="3_14kfe"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/button.gd" id="4_7daam"]
+
+[node name="Button" type="Button"]
+offset_right = 200.0
+offset_bottom = 22.0
+theme = ExtResource("1_m4yaq")
+theme_override_colors/font_color = Color(0.145098, 0.145098, 0.145098, 1)
+theme_override_fonts/font = ExtResource("2_vunts")
+theme_override_styles/normal = ExtResource("3_14kfe")
+text = "text"
+alignment = 0
+script = ExtResource("4_7daam")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

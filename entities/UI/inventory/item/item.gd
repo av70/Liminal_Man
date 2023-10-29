@@ -13,3 +13,4 @@ func resize(container_scale:float):
 	size.x = (rotated_width * (slot_size-1))
 	size.y = (rotated_height * (slot_size-1))
 	scale = Vector2(1 * container_scale, 1 * container_scale)
+

@@ -11,6 +11,10 @@ var slot_size = 39
 @onready var label = $Panel/Label
 @onready var parent = $".."
 
+#TODO ponder the existance of slot resource with slot_data resource
+
+#------------------------------------------------------------------------------
+
 func get_index_from_grid_coords(x, y) -> int:
 	var index = y * inventory_data.columns + x
 	return index
@@ -41,6 +45,17 @@ func is_grid_space_available(item: Item,slot_index: int) -> bool:
 			if grid_array[get_index_from_grid_coords(i,j)].item != null:
 				return false
 	return true
+
+
+func create_slot(index: int):
+	var new_slot = slot_scene.instantiate()
+	grid.add_child(new_slot)
+	new_slot.slot_index = index
+	grid_array.push_back(new_slot)
+	new_slot.slot_index = index
+	new_slot.item = null
+
+#------------------------------------------------------------------------------
 
 func load_inventory(data: InventoryData):
 	inventory_data = data
@@ -78,36 +93,22 @@ func unload_inventory(data: InventoryData):
 	
 	grid_array = [ ]
 
-
-func create_slot(index: int):
-	var new_slot = slot_scene.instantiate()
-	grid.add_child(new_slot)
-	new_slot.slot_index = index
-	grid_array.push_back(new_slot)
-	new_slot.slot_index = index
-	new_slot.item = null
-	
-#
-#func change_slot_item(item_data: ItemData, slot: Control):
-#	for i in range(slot.x,slot.x+item_data.width):
-#		for j in range(slot.y,slot.y+item_data.height):
-#			grid_array[j].item_data = item_data
-
-
 func place(item_is_rotated: bool, item:Item, grid_index: int):
 	var slot = grid_array[grid_index]
 	var slot_coords = get_grid_coords_from_index(grid_index)
 	item.index = grid_index
-	print(item.rotated_width)
 	for x in range(slot_coords.x,item.rotated_width+slot_coords.x):
 			for y in range(slot_coords.y,item.rotated_height+slot_coords.y):
 				grid_array[get_index_from_grid_coords(x,y)].item = item
 				grid_array[get_index_from_grid_coords(x,y)].item_is_rotated = item_is_rotated
-				print(grid_array[get_index_from_grid_coords(x,y)].item_is_rotated)
+
+func get_item(index: int):
+	var slot = grid_array[index]
+
+	return slot.item
 
 func grab_item(index:int):
-	var slot = grid_array[index]
-	var item = slot.item
+	var item = get_item(index)
 	if item:
 		var item_coords = get_grid_coords_from_index(item.index)
 		for x in range(item_coords.x,item.rotated_width+item_coords.x):
@@ -115,11 +116,9 @@ func grab_item(index:int):
 					grid_array[get_index_from_grid_coords(x,y)].item = null
 		return item
 
-func _on_slot_mouse_enter():
-	pass
 
-func _on_slot_mouse_leave():
-	pass
+
+# called when player closes inventory screen
 
 func update_inventory_data(slot_data_array) -> Array:
 	slot_data_array.clear()

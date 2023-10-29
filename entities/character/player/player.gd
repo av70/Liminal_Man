@@ -155,7 +155,7 @@ func _input(event):
 		mouse_lock = true
 		rotate_pick_node(event)
 	
-	if Input.is_action_just_released('rotate_hand_toggle'): mouse_lock = false
+	if Input.is_action_just_released('rotate_hand_toggle') and picked_node: mouse_lock = false
 
 ##	inventory
 	if Input.is_action_just_pressed('toggle_inventory'): 

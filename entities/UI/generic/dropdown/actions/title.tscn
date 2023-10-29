@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://fiyf6eghbsj6"]
+
+[ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="1_id0jw"]
+[ext_resource type="LabelSettings" uid="uid://dgm3ivr4b6njh" path="res://assets/ui/text_black.tres" id="2_cfyq2"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/title.gd" id="3_j62vt"]
+
+[node name="Title" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1720.0
+offset_bottom = -1178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("1_id0jw")
+text = "text"
+label_settings = ExtResource("2_cfyq2")
+vertical_alignment = 1
+script = ExtResource("3_j62vt")

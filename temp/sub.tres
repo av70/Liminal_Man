@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="DropdownData" load_steps=5 format=3 uid="uid://2uqtu6qbcbje"]
+
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/dropdown_action_data.gd" id="1_qskyt"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/dropdown_data.gd" id="2_whfab"]
+
+[sub_resource type="Resource" id="Resource_23fi3"]
+script = ExtResource("1_qskyt")
+type = "Button"
+action = "hold_left"
+function = "hold"
+text = "Left"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_0o8pp"]
+script = ExtResource("1_qskyt")
+type = "Button"
+action = "hold_right"
+function = "hold"
+text = "Right"
+lines = 0
+
+[resource]
+script = ExtResource("2_whfab")
+actions_array = Array[ExtResource("1_qskyt")]([SubResource("Resource_23fi3"), SubResource("Resource_0o8pp")])
+width = 150

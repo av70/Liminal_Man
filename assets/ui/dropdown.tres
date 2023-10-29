@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://5gq6jb150yuf"]
+
+[ext_resource type="FontFile" uid="uid://cgtk476g2atll" path="res://assets/font/LiberationSans-Bold.ttf" id="1_u04wj"]
+[ext_resource type="StyleBox" uid="uid://bu2eakbsy32cv" path="res://assets/ui/theme/nfill.tres" id="2_58krh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sik1"]
+bg_color = Color(0.854902, 0.854902, 0.854902, 0.431373)
+skew = Vector2(2.08165e-12, 2.08165e-12)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.231373)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dk8nm"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 0.431373)
+skew = Vector2(2.08165e-12, 2.08165e-12)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.231373)
+shadow_size = 2
+
+[resource]
+Button/colors/font_color = Color(0.145098, 0.145098, 0.145098, 1)
+Button/colors/font_focus_color = Color(0.145098, 0.145098, 0.145098, 1)
+Button/colors/font_hover_color = Color(0.145098, 0.145098, 0.145098, 1)
+Button/colors/font_hover_pressed_color = Color(0.145098, 0.145098, 0.145098, 1)
+Button/fonts/font = ExtResource("1_u04wj")
+Button/styles/disabled = ExtResource("2_58krh")
+Button/styles/focus = ExtResource("2_58krh")
+Button/styles/hover = SubResource("StyleBoxFlat_7sik1")
+Button/styles/normal = ExtResource("2_58krh")
+Button/styles/pressed = SubResource("StyleBoxFlat_dk8nm")
