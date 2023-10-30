@@ -1,17 +1,15 @@
-[gd_scene load_steps=34 format=3 uid="uid://ci4c4b21gi4nu"]
+[gd_scene load_steps=24 format=3 uid="uid://ci4c4b21gi4nu"]
 
 [ext_resource type="Script" path="res://entities/character/player/player.gd" id="1_22u71"]
+[ext_resource type="Resource" uid="uid://ctj5xx5hm66sx" path="res://entities/character/player/player_inventory_data.tres" id="2_077wp"]
 [ext_resource type="Texture2D" uid="uid://bvf7l1jm0b14u" path="res://assets/ui/cursor/Cursor2.png" id="2_mvdjy"]
 [ext_resource type="Script" path="res://entities/character/player/player_audio.gd" id="2_td0o2"]
-[ext_resource type="Script" path="res://entities/item/item_data.gd" id="3_b8k4f"]
 [ext_resource type="PackedScene" uid="uid://cmrjd352jta3n" path="res://entities/audio/audio_queue.tscn" id="3_lfitr"]
-[ext_resource type="Script" path="res://entities/UI/inventory/slot/slot_data.gd" id="3_thnn8"]
-[ext_resource type="Script" path="res://entities/UI/inventory/inventory_data.gd" id="4_ixsss"]
+[ext_resource type="Resource" uid="uid://d20unpqrrimh0" path="res://entities/character/player/equip_inventory_data.tres" id="3_pw74s"]
 [ext_resource type="AudioStream" uid="uid://c5l7nql7q2vep" path="res://audio/player_audio/foot/concrete/concrete04.wav" id="4_kpluj"]
-[ext_resource type="Resource" uid="uid://c7lg8h0d75gmn" path="res://entities/UI/inventory/item/item_data_test.tres" id="5_21msd"]
+[ext_resource type="Resource" uid="uid://cm34yvgcpnew0" path="res://entities/character/player/container_inventory_data.tres" id="4_wqacr"]
 [ext_resource type="AudioStream" uid="uid://bejfw10wy3dgy" path="res://audio/player_audio/foot/concrete/concrete08.wav" id="5_xa556"]
 [ext_resource type="Script" path="res://entities/audio/audio_random.gd" id="6_8a56o"]
-[ext_resource type="Resource" uid="uid://fpq13tkn4tif" path="res://entities/UI/inventory/item/apple.tres" id="6_yufqq"]
 [ext_resource type="AudioStream" uid="uid://dposlfb3ullvi" path="res://audio/player_audio/foot/concrete/concrete00.wav" id="7_w6deh"]
 [ext_resource type="AudioStream" uid="uid://c8rpa32xhm5my" path="res://audio/player_audio/foot/concrete/concrete01.wav" id="8_bunma"]
 [ext_resource type="AudioStream" uid="uid://pflvuilklypq" path="res://audio/player_audio/foot/concrete/concrete02.wav" id="9_nvyhc"]
@@ -24,61 +22,6 @@
 [ext_resource type="Script" path="res://entities/character/controller/controller_move_state.gd" id="16_rpl5m"]
 [ext_resource type="Script" path="res://entities/character/controller/controller_idle_state.gd" id="17_yueyo"]
 
-[sub_resource type="Resource" id="Resource_igid4"]
-script = ExtResource("3_b8k4f")
-width = 1
-height = 1
-node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
-name = "name that describes the item"
-
-[sub_resource type="Resource" id="Resource_urmny"]
-script = ExtResource("3_thnn8")
-item_data = SubResource("Resource_igid4")
-index = 0
-item_is_rotated = false
-
-[sub_resource type="Resource" id="Resource_jx4gf"]
-script = ExtResource("4_ixsss")
-slot_data_array = Array[ExtResource("3_thnn8")]([SubResource("Resource_urmny")])
-title = "INVENTORY"
-columns = 6
-rows = 4
-posx = 0
-
-[sub_resource type="Resource" id="Resource_tr7yu"]
-script = ExtResource("4_ixsss")
-slot_data_array = Array[ExtResource("3_thnn8")]([])
-title = "BAG"
-columns = 6
-rows = 3
-posx = -270
-
-[sub_resource type="Resource" id="Resource_3i70k"]
-script = ExtResource("3_thnn8")
-item_data = ExtResource("5_21msd")
-index = 0
-item_is_rotated = false
-
-[sub_resource type="Resource" id="Resource_j4vr4"]
-script = ExtResource("3_thnn8")
-item_data = ExtResource("6_yufqq")
-index = 0
-item_is_rotated = true
-
-[sub_resource type="Resource" id="Resource_rl0yv"]
-script = ExtResource("3_thnn8")
-item_data = ExtResource("5_21msd")
-index = 0
-item_is_rotated = true
-
-[sub_resource type="Resource" id="Resource_ph35m"]
-script = ExtResource("4_ixsss")
-slot_data_array = Array[ExtResource("3_thnn8")]([SubResource("Resource_3i70k"), SubResource("Resource_j4vr4"), SubResource("Resource_rl0yv"), null, null])
-title = "BOX"
-columns = 8
-rows = 8
-posx = 310
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bk7ra"]
 radius = 0.3
 height = 1.3
@@ -90,9 +33,9 @@ height = 1.1
 [node name="Player" type="CharacterBody3D"]
 wall_min_slide_angle = 0.0
 script = ExtResource("1_22u71")
-player_inventory_data = SubResource("Resource_jx4gf")
-equip_inventory_data = SubResource("Resource_tr7yu")
-container_inventory_data = SubResource("Resource_ph35m")
+player_inventory_data = ExtResource("2_077wp")
+equip_inventory_data = ExtResource("3_pw74s")
+container_inventory_data = ExtResource("4_wqacr")
 
 [node name="stand_collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.15, 2.08165e-12)

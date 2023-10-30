@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=2 format=3 uid="uid://d20unpqrrimh0"]
+
+[ext_resource type="Script" path="res://entities/UI/inventory/inventory_data.gd" id="1_0vqbm"]
+
+[resource]
+script = ExtResource("1_0vqbm")
+slot_data_array = Array[Resource("res://entities/UI/inventory/slot/slot_data.gd")]([])
+title = "BAG"
+columns = 6
+rows = 3
+posx = -270

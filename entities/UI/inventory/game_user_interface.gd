@@ -36,7 +36,6 @@ func hide_inventory(player: Player):
 	inventory_handler.unload_inventory(player_inventory_canvas, player.player_inventory_data)
 	if player.equip_inventory_data != null: inventory_handler.unload_inventory(equip_inventory_canvas,player.equip_inventory_data)
 	if player.container_inventory_data != null: inventory_handler.unload_inventory(container_inventory_canvas,player.container_inventory_data)
-	inventory_handler.unload_items()
 
 func on_toggle_inventory(player: Player):
 	if inventory_handler.visible:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/dropdown_action_data.gd" id="1_cv5lx"]
 [ext_resource type="Script" path="res://entities/UI/generic/dropdown/dropdown_data.gd" id="1_skfw1"]
-[ext_resource type="Resource" uid="uid://2uqtu6qbcbje" path="res://temp/sub.tres" id="2_tx0ti"]
+[ext_resource type="Resource" uid="uid://2uqtu6qbcbje" path="res://entities/sub.tres" id="2_tx0ti"]
 
 [sub_resource type="Resource" id="Resource_bmop4"]
 script = ExtResource("1_cv5lx")

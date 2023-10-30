@@ -8,7 +8,7 @@ var subdropdown_button = preload("res://entities/UI/generic/dropdown/actions/sub
 
 var dropdown_scene = preload("res://entities/UI/generic/dropdown/dropdown.tscn")
 
-var test_data = preload("res://temp/new_resource.tres")
+#var test_data = preload("res://temp/new_resource.tres")
 #
 #var rect: Control
 

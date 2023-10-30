@@ -15,7 +15,7 @@ var dropdown: Control
 var item_scene = preload('res://entities/UI/inventory/item/item.tscn')
 
 var dropdown_scene = preload("res://entities/UI/generic/dropdown/dropdown.tscn")
-var dropdown_data  = preload("res://temp/new_resource.tres")
+#var dropdown_data  = preload("res://temp/new_resource.tres")
 
 signal item_dropped
 
@@ -151,11 +151,13 @@ func _input(event) -> void:
 	if Input.is_action_just_pressed('inventory_grab'):
 		
 		if !item_held and !dropdown: grab(hovered_container)
+	
+	if Input.is_action_just_released('inventory_grab'):
 		
-		elif item_held and !dropdown:
-			if hovered_container:
-			
-				if hovered_container.is_grid_space_available(item_held,place_position_slot_i):
+		if item_held and !dropdown:
+			if hovered_container and hovered_container.is_grid_space_available(item_held,place_position_slot_i):
+#
+#				if hovered_container.is_grid_space_available(item_held,place_position_slot_i):
 					place(item_held.rotated,item_held,hovered_container,place_position_slot_i)
 					item_held = null
 			
@@ -187,7 +189,7 @@ func _input(event) -> void:
 					item_dropdowned = hovered_container.get_item(hovered_container.get_index_under_pos(cursor_position))
 					
 					add_child(dropdown)
-					dropdown.load_actions(dropdown_data)
+					dropdown.load_actions(item_dropdowned.item_data.dropdown_data)
 					dropdown.global_position = get_global_mouse_position()
 					dropdown.action.connect(on_item_action)
 	

@@ -1,44 +1,45 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=10 format=3 uid="uid://d37u3ckmy01dg"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=11 format=3 uid="uid://d37u3ckmy01dg"]
 
 [ext_resource type="Script" path="res://entities/UI/inventory/inventory_data.gd" id="1_ym7w3"]
 [ext_resource type="Script" path="res://entities/item/item_data.gd" id="2_etqk4"]
+[ext_resource type="Resource" uid="uid://c70okhskhuoky" path="res://entities/item/item_dropdown.tres" id="2_sftj7"]
 [ext_resource type="Script" path="res://entities/UI/inventory/slot/slot_data.gd" id="3_tud4x"]
 
 [sub_resource type="Resource" id="Resource_vfusu"]
 script = ExtResource("2_etqk4")
 width = 1
 height = 1
-node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
-name = "name that describes the item"
+dropdown_data = ExtResource("2_sftj7")
 
 [sub_resource type="Resource" id="Resource_i11k1"]
 script = ExtResource("3_tud4x")
 item_data = SubResource("Resource_vfusu")
 index = 0
+item_is_rotated = false
 
 [sub_resource type="Resource" id="Resource_rijwr"]
 script = ExtResource("2_etqk4")
 width = 1
 height = 1
-node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
-name = "name that describes the item"
+dropdown_data = ExtResource("2_sftj7")
 
 [sub_resource type="Resource" id="Resource_mkfne"]
 script = ExtResource("3_tud4x")
 item_data = SubResource("Resource_rijwr")
 index = 0
+item_is_rotated = false
 
 [sub_resource type="Resource" id="Resource_5g5o8"]
 script = ExtResource("2_etqk4")
 width = 1
 height = 1
-node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
-name = "name that describes the item"
+dropdown_data = ExtResource("2_sftj7")
 
 [sub_resource type="Resource" id="Resource_imncm"]
 script = ExtResource("3_tud4x")
 item_data = SubResource("Resource_5g5o8")
 index = 0
+item_is_rotated = false
 
 [resource]
 script = ExtResource("1_ym7w3")

@@ -245,23 +245,30 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.0
-offset_top = 82.5
-offset_right = 80.0
-offset_bottom = 126.5
+offset_left = -119.5
+offset_top = 130.0
+offset_right = 119.5
+offset_bottom = 174.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("18_w0h01")
 
 [node name="GridContainer" type="GridContainer" parent="PlayerUI/InventoryHandler/Inventory4/Panel3"]
 layout_mode = 1
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 159.0
-offset_bottom = 42.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.5
+offset_top = -20.0
+offset_right = 117.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/h_separation = -1
 theme_override_constants/v_separation = -1
-columns = 4
+columns = 6
 
 [node name="TextureRect" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
@@ -274,6 +281,16 @@ layout_mode = 2
 texture = ExtResource("18_l1ael")
 
 [node name="TextureRect3" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
+modulate = Color(0.668629, 0.668629, 0.668629, 1)
+layout_mode = 2
+texture = ExtResource("18_l1ael")
+
+[node name="TextureRect5" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
+modulate = Color(0.668629, 0.668629, 0.668629, 1)
+layout_mode = 2
+texture = ExtResource("18_l1ael")
+
+[node name="TextureRect6" type="TextureRect" parent="PlayerUI/InventoryHandler/Inventory4/Panel3/GridContainer"]
 modulate = Color(0.668629, 0.668629, 0.668629, 1)
 layout_mode = 2
 texture = ExtResource("18_l1ael")

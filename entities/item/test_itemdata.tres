@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://djyjhu3678b10"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://djyjhu3678b10"]
 
+[ext_resource type="Resource" uid="uid://c70okhskhuoky" path="res://entities/item/item_dropdown.tres" id="1_06krm"]
 [ext_resource type="Script" path="res://entities/item/item_data.gd" id="1_hxvw8"]
 
 [resource]
 script = ExtResource("1_hxvw8")
 width = 3
 height = 3
-node = "res://entities/interactable/pickable/collectable/test_collectable.tscn"
-name = "test"
+dropdown_data = ExtResource("1_06krm")

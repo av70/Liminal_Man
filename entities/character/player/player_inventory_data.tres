@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=5 format=3 uid="uid://ctj5xx5hm66sx"]
+
+[ext_resource type="Script" path="res://entities/UI/inventory/inventory_data.gd" id="1_14pdd"]
+[ext_resource type="Resource" uid="uid://5g3c3hdxyyy1" path="res://entities/item/item/apple.tres" id="2_e00ly"]
+[ext_resource type="Script" path="res://entities/UI/inventory/slot/slot_data.gd" id="4_o76pc"]
+
+[sub_resource type="Resource" id="Resource_urmny"]
+script = ExtResource("4_o76pc")
+item_data = ExtResource("2_e00ly")
+index = 0
+item_is_rotated = false
+
+[resource]
+script = ExtResource("1_14pdd")
+slot_data_array = Array[ExtResource("4_o76pc")]([SubResource("Resource_urmny")])
+title = "INVENTORY"
+columns = 6
+rows = 4
+posx = 0

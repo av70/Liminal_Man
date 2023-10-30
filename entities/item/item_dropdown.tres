@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="DropdownData" load_steps=10 format=3 uid="uid://c70okhskhuoky"]
+
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/dropdown_action_data.gd" id="1_papcu"]
+[ext_resource type="Resource" uid="uid://ceh5eexqrol8b" path="res://entities/item/item_hold_sdropdown.tres" id="2_wl3dy"]
+[ext_resource type="Resource" uid="uid://c0akvv6lqjral" path="res://entities/item/quick_select_sdopdown.tres" id="3_2fr2o"]
+[ext_resource type="Script" path="res://entities/UI/generic/dropdown/dropdown_data.gd" id="3_p5yty"]
+
+[sub_resource type="Resource" id="Resource_bmop4"]
+script = ExtResource("1_papcu")
+type = "Title"
+action = " "
+function = " "
+text = "Apple"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_m0v4s"]
+script = ExtResource("1_papcu")
+type = "Blurb"
+action = " "
+function = " "
+text = "fruity fruit with succulent apple flavor crunch."
+lines = 1
+
+[sub_resource type="Resource" id="Resource_g6k1d"]
+script = ExtResource("1_papcu")
+type = "Button"
+action = "drop"
+function = "drop"
+text = "Drop"
+lines = 0
+
+[sub_resource type="Resource" id="Resource_1535j"]
+script = ExtResource("1_papcu")
+type = "SubdropdownButton"
+action = " "
+function = " "
+text = "Hold"
+lines = 0
+sub_dropdown_data = ExtResource("2_wl3dy")
+
+[sub_resource type="Resource" id="Resource_k5hpy"]
+script = ExtResource("1_papcu")
+type = "SubdropdownButton"
+action = " "
+function = " "
+text = "Quick Select"
+lines = 0
+sub_dropdown_data = ExtResource("3_2fr2o")
+
+[resource]
+script = ExtResource("3_p5yty")
+actions_array = Array[ExtResource("1_papcu")]([SubResource("Resource_bmop4"), SubResource("Resource_m0v4s"), SubResource("Resource_g6k1d"), SubResource("Resource_1535j"), SubResource("Resource_k5hpy")])
+width = 200
