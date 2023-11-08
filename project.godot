@@ -172,12 +172,13 @@ dropdown_interact={
 
 common/physics_jitter_fix=1.0
 3d/physics_engine="JoltPhysics3D"
-jolt_3d/sleep/enabled=false
 
 [rendering]
 
 lights_and_shadows/use_physical_light_units=true
-lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
-lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
-shading/overrides/force_vertex_shading.mobile=false
+global_illumination/gi/use_half_resolution=true
+shading/overrides/force_vertex_shading=true
+shading/overrides/force_lambert_over_burley=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
+anti_aliasing/quality/msaa_3d=2
+occlusion_culling/use_occlusion_culling=true

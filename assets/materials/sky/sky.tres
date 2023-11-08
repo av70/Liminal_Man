@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bm0odh8nphkkg" path="res://assets/textures/sky/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_utan6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iufvg"]
-sky_top_color = Color(0.305882, 0.435294, 0.541176, 1)
+sky_top_color = Color(0.180392, 0.278431, 0.34902, 1)
 sky_horizon_color = Color(0.521569, 0.556863, 0.556863, 1)
 sky_curve = 0.0652912
 sky_energy_multiplier = 2.75

@@ -3,14 +3,6 @@
 [ext_resource type="Script" path="res://entities/UI/generic/dropdown/actions/dropdown_action_data.gd" id="1_sdyfc"]
 [ext_resource type="Script" path="res://entities/UI/generic/dropdown/dropdown_data.gd" id="2_s62l3"]
 
-[sub_resource type="Resource" id="Resource_buvfu"]
-script = ExtResource("1_sdyfc")
-type = "Button"
-action = "qs0"
-function = "quick_select"
-text = "Slot 0"
-lines = 0
-
 [sub_resource type="Resource" id="Resource_k15i3"]
 script = ExtResource("1_sdyfc")
 type = "Button"
@@ -51,7 +43,15 @@ function = "quick_select"
 text = "Slot 5"
 lines = 0
 
+[sub_resource type="Resource" id="Resource_i0tue"]
+script = ExtResource("1_sdyfc")
+type = "Title"
+action = "qs5"
+function = "quick_select"
+text = "Slot 6"
+lines = 0
+
 [resource]
 script = ExtResource("2_s62l3")
-actions_array = Array[ExtResource("1_sdyfc")]([SubResource("Resource_buvfu"), SubResource("Resource_k15i3"), SubResource("Resource_6ky71"), SubResource("Resource_3b7ym"), SubResource("Resource_5kq6a"), SubResource("Resource_pc42w")])
+actions_array = Array[ExtResource("1_sdyfc")]([SubResource("Resource_k15i3"), SubResource("Resource_6ky71"), SubResource("Resource_3b7ym"), SubResource("Resource_5kq6a"), SubResource("Resource_pc42w"), SubResource("Resource_i0tue")])
 width = 150
